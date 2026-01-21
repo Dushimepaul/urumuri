@@ -1,10 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 /**
-    * @author:   Niyodon
-    * Email:     niyodon@gmail.com
-    * Gitgub:    
- */
+ * @author:    dushime paul
+ * Email:     dushimeyesupaulin@gmail.com
+ * Date :     Le 20/01/2026
+ * https://github.com/Dushimepaul
+*/
+
 class Admin extends MY_Controller {
 
 	public function index()

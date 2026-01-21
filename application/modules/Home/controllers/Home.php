@@ -1,11 +1,12 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
- * @author     Pacy
- * @Date       15/08/2025
- * @email    niyodonpaci@gmail.com
- *
- */
+ * @author:    dushime paul
+ * Email:     dushimeyesupaulin@gmail.com
+ * Date :     Le 20/01/2026
+ * https://github.com/Dushimepaul
+*/
+
 
 class Home extends My_Controller
 {

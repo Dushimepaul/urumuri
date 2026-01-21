@@ -1,5 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+/**
+ * @author:    dushime paul
+ * Email:     dushimeyesupaulin@gmail.com
+ * Date :     Le 20/01/2026
+ * https://github.com/Dushimepaul
+*/
 
 class Roles extends MY_Controller {
 
