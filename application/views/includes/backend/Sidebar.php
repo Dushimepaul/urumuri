@@ -1,0 +1,115 @@
+<!--sidebar wrapper -->
+				<div class="sidebar-wrapper" data-simplebar="true">
+					<div class="sidebar-header">
+						<div>
+							<img src="<?=base_url()?>assets/frontend/img/logo/urumuri.jpeg" class="logo-icon" alt="logo icon">
+						</div>
+						<div>
+							<h4 class="logo-text">URUMURI_ICSB</h4>
+						</div>
+						<div class="mobile-toggle-icon ms-auto"><i class='bx bx-x'></i>
+						</div>
+					 </div>
+					<!--navigation-->
+					<ul class="metismenu" id="menu">
+						<li>
+							<a href="javascript:;" class="has-arrow">
+								<div class="parent-icon"><i class='bx bx-home-alt'></i>
+								</div>
+								<div class="menu-title">Dashboard</div>
+							</a>
+							<ul>
+								<li> <a href="<?=base_url('Dashboard')?>"><i class='bx bx-radio-circle'></i>Dashboard</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="javascript:;" class="has-arrow">
+								<div class="parent-icon"><i class="bx bx-category"></i>
+								</div>
+								<div class="menu-title">MENU</div>
+							</a>
+							<ul>
+								<li> <a href="<?=base_url('Carousel')?>"><i class='bx bx-radio-circle'></i>Carousels</a>
+									<li> <a href="<?=base_url('About_us')?>"><i class='bx bx-radio-circle'></i>About us</a>
+								</li>
+								<li> <a href="<?=base_url('Devise')?>"><i class='bx bx-radio-circle'></i>Devise</a>
+								</li>
+								<li> <a href="<?=base_url('Mission')?>"><i class='bx bx-radio-circle'></i>Mission</a>
+								</li>
+								<li> <a href="<?=base_url('Vision')?>"><i class='bx bx-radio-circle'></i>Vision</a>
+								</li>
+								<li> <a href="<?=base_url('Objectifs')?>"><i class='bx bx-radio-circle'></i>Objectifs</a>
+								</li>
+								<li> <a href="<?=base_url('Testimony')?>"><i class='bx bx-radio-circle'></i>Témoignages</a>
+								</li>
+								<li> <a href="<?=base_url('galleries/Galleries')?>"><i class='bx bx-radio-circle'></i>Galleries</a>
+								</li>
+								<li> <a href="<?=base_url('Events')?>"><i class='bx bx-radio-circle'></i>events</a> </lu>
+                                <li><a href="<?=base_url('News_media')?>"><i class='bx bx-radio-circle'></i>News Media</a></li>
+                <li><a href="<?=base_url('Events')?>"><i class='bx bx-radio-circle'></i>Evenements</a></li>
+                <li><a href="<?=base_url('Parteners')?>"><i class='bx bx-radio-circle'></i>Parteners</a></li>
+                
+							</ul>
+						</li>
+
+						<li>
+							<a class="has-arrow" href="javascript:;">
+								<div class="parent-icon"><i class='bx bx-message-square-edit'></i>
+								</div>
+								<div class="menu-title">Contact</div>
+							</a>
+							<ul>
+								<li> <a href="<?=base_url('Contact_Us')?>"><i class='bx bx-radio-circle'></i>contact_us</a>
+								</li>
+								<li> <a href="<?=base_url('Newsletter')?>"><i class='bx bx-radio-circle'></i>New letter</a>
+								</li>
+							</ul>
+						</li>
+						
+					
+						
+						<li>
+							<a class="has-arrow" href="javascript:;">
+								<div class="parent-icon"><i class="bx bx-repeat"></i>
+								</div>
+								<div class="menu-title">membres</div>
+							</a>
+							<ul>
+								<li> <a href="<?=base_url('Categories_membre')?>"><i class='bx bx-radio-circle'></i>Categories Members</a>
+								</li>
+								<li> <a href="javascript:;"><i class='bx bx-radio-circle'></i>Membres</a>
+								</li>
+							</ul>
+						</li>
+						<li class="menu-label">Users & Settings</li>
+						<li>
+							<a class="has-arrow" href="javascript:;">
+								<div class="parent-icon"><i class='bx bx-message-square-edit'></i>
+								</div>
+								<div class="menu-title">Users</div>
+							</a>
+							<ul>
+								<li> <a href="<?=base_url('Users')?>"><i class='bx bx-radio-circle'></i>Users</a>
+								</li>
+								<li> <a href="<?=base_url('Roles')?>"><i class='bx bx-radio-circle'></i>Roles</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="<?=base_url('Settings')?>">
+								<div class="parent-icon"><i class="bx bx-grid-alt"></i>
+								</div>
+								<div class="menu-title">Settings</div>
+							</a>
+						</li>
+						
+						
+					</ul>
+					<!--end navigation-->
+				</div>
+				<!--end sidebar wrapper -->
+
+
+
+				
