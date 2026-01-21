@@ -4,7 +4,6 @@
  * @author:    dushime paul
  * Email:     dushimeyesupaulin@gmail.com
  * Date :     Le 20/01/2026
- * GIT
  * https://github.com/Dushimepaul
 */
 
