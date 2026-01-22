@@ -165,8 +165,7 @@
 		</div>
 
 	</div>
-</div>
-<!--end page wrapper -->
+
 
  
  <!-- ========= CKEDITOR + UPLOAD ========= -->

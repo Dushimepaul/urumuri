@@ -228,8 +228,6 @@
     <hr/>
 
 </div>
-</div>
-<!--end page wrapper -->
 
 
 <!-- ========= MODAL NEW CAROUSEL ========= -->

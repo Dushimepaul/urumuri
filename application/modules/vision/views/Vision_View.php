@@ -171,7 +171,5 @@
         </div>
 
     </div>
-</div>
-<!--end page wrapper -->
 
 <?php include VIEWPATH . 'includes/backend/Footer.php'; ?>

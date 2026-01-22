@@ -114,6 +114,6 @@
         </div>
 
     </div>
-</div>
+
 
 <?php include VIEWPATH . 'includes/backend/Footer.php'; ?>

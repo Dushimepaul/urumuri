@@ -41,15 +41,29 @@
 								</li>
 								<li> <a href="<?=base_url('Objectifs')?>"><i class='bx bx-radio-circle'></i>Objectifs</a>
 								</li>
-								<li> <a href="<?=base_url('Testimony')?>"><i class='bx bx-radio-circle'></i>Témoignages</a>
-								</li>
 								<li> <a href="<?=base_url('galleries/Galleries')?>"><i class='bx bx-radio-circle'></i>Galleries</a>
 								</li>
-								<li> <a href="<?=base_url('Events')?>"><i class='bx bx-radio-circle'></i>events</a> </lu>
-                                <li><a href="<?=base_url('News_media')?>"><i class='bx bx-radio-circle'></i>News Media</a></li>
-                <li><a href="<?=base_url('Events')?>"><i class='bx bx-radio-circle'></i>Evenements</a></li>
-                <li><a href="<?=base_url('Parteners')?>"><i class='bx bx-radio-circle'></i>Parteners</a></li>
+                                <li><a href="<?=base_url('Parteners')?>"><i class='bx bx-radio-circle'></i>Parteners</a></li>
+                                <li><a href="<?=base_url('Projects')?>"><i class='bx bx-radio-circle'></i>Projects</a></li>
                 
+							</ul>
+						</li>
+
+						<li>
+							<a class="has-arrow" href="javascript:;">
+								<div class="parent-icon"><i class='bx bx-message-square-edit'></i>
+								</div>
+								<div class="menu-title">Dons</div>
+							</a>
+							<ul>
+								<li> <a href="<?=base_url('Dons')?>"><i class='bx bx-radio-circle'></i>Donateur</a>
+								</li>
+								<li> <a href="<?=base_url('Dons/Financiers')?>"><i class='bx bx-radio-circle'></i>Dons Financier</a>
+								</li>
+								<li> <a href="<?=base_url('Dons/Materiels')?>"><i class='bx bx-radio-circle'></i>Dons Materiels</a>
+								</li>
+								<li> <a href="<?=base_url('Dons/Competences')?>"><i class='bx bx-radio-circle'></i>Dons Competences</a>
+								</li>
 							</ul>
 						</li>
 
@@ -62,7 +76,7 @@
 							<ul>
 								<li> <a href="<?=base_url('Contact_Us')?>"><i class='bx bx-radio-circle'></i>contact_us</a>
 								</li>
-								<li> <a href="<?=base_url('Newsletter')?>"><i class='bx bx-radio-circle'></i>New letter</a>
+								<li> <a href="<?=base_url('Newsletter')?>"><i class='bx bx-radio-circle'></i>Newsletters</a>
 								</li>
 							</ul>
 						</li>
@@ -70,7 +84,7 @@
 					
 						
 						<li>
-							<a class="has-arrow" href="javascript:;">
+							<a class="has-arrow" href="<?=base_url('Membres')?>">
 								<div class="parent-icon"><i class="bx bx-repeat"></i>
 								</div>
 								<div class="menu-title">membres</div>

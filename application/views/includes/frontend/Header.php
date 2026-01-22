@@ -29,7 +29,7 @@
         <div class="social">
             <span class="Follow">Follow us:</span>
             <a target="_blank" href="<?= $this->Model->get_setting('site_facebook','facebook.com'); ?>"><i class="fab fa-facebook-f"></i></a>
-            <a target="_blank" href="<?= $this->Model->get_setting('site_instagram','instagram.com'); ?>">"><i class="fab fa-instagram"></i></a>
+            <a target="_blank" href="<?= $this->Model->get_setting('site_instagram','instagram.com'); ?>"><i class="fab fa-instagram"></i></a>
             <a target="_blank" href="<?= $this->Model->get_setting('site_youtube','youtube.com'); ?>"><i class="fab fa-youtube"></i></a>
         </div>
         <div class="contact d-none d-md-flex justify-content-center gap-3 flex-wrap">
@@ -56,13 +56,13 @@
 
                 <li class="nav-item">
                     <a class="nav-link active" href="<?=base_url('')?>">
-                        <i class="fas fa-home me-2"></i>Accueil
+                       Accueil
                     </a>
                 </li>
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="<?=base_url('Home/AboutUs')?>" data-bs-toggle="dropdown">
-                        <i class="fas fa-university me-2"></i>À propos
+                        </i>À propos
                     </a>
                     <ul class="dropdown-menu border-0 shadow">
                         <li><a class="dropdown-item" href="<?=base_url('Home/AboutUs')?>"><i class="me-2"></i>Vision et Mission</a></li>
@@ -72,8 +72,8 @@
                 </li>
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="<?=base_url('Home/AboutUs')?>" data-bs-toggle="dropdown">
-                        <i class="fas fa-university me-2"></i>Projets
+                    <a class="nav-link dropdown-toggle" href="<?=base_url('Home/Actions')?>" data-bs-toggle="dropdown">
+                       Projets
                     </a>
                     <ul class="dropdown-menu border-0 shadow">
                         <li><a class="dropdown-item" href="<?=base_url('Home/Actions')?>"><i class="me-2"></i>Projets réalisés</a></li>
@@ -83,19 +83,24 @@
 
                 <li class="nav-item">
                     <a class="nav-link" href="<?=base_url('Home/Faq')?>">
-                        <i class="fas fa-envelope-open-text me-2"></i>FAQ
+                        FAQ
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?=base_url('Home/Galleries')?>">
+                        Galleries
                     </a>
                 </li>
                 
                 <li class="nav-item">
                     <a class="nav-link" href="<?=base_url('Home/ContactUs')?>">
-                        <i class="fas fa-envelope-open-text me-2"></i>Contact
+                        Contact
                     </a>
                 </li>
 
                 <li class="nav-item ms-lg-2">
                     <a class="nav-link btn-involved" href="<?=base_url('Home/Involved')?>">
-                        <i class="fas fa-user-plus me-2"></i>Donation
+                        </i>Donation
                     </a>
                 </li>
 

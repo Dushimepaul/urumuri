@@ -193,8 +193,6 @@
 
 		<hr/>
 	</div>
-</div>
-<!--end page wrapper -->
 
 <div class="modal fade" id="partener" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-bs-backdrop="static">
 <div class="modal-dialog modal-lg">

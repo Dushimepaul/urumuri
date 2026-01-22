@@ -2,8 +2,8 @@
 <?php include VIEWPATH.'includes/backend/Sidebar.php' ;?>
 <?php include VIEWPATH.'includes/backend/Topheader.php' ;?>
 <!--start page wrapper -->
+<div class="page-wrapper">
 	<div class="page-content">
-		<!--breadcrumb-->
 		<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
 			<div class="breadcrumb-title pe-3">Admin</div>
 			<div class="ps-3">
@@ -181,8 +181,8 @@
 
 		<hr/>
 	</div>
-</div>
-<!--end page wrapper -->
+
+
 
 <div class="modal fade" id="contactus" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-bs-backdrop="static">
 <div class="modal-dialog modal-lg">

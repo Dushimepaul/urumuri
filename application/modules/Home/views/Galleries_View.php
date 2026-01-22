@@ -102,9 +102,9 @@ include VIEWPATH.'includes/frontend/Header.php';
     font-size: 0.8rem;
     backdrop-filter: blur(10px);
 }
-.gallery-type.photos { background: #2196f3; }
-.gallery-type.videos { background: #f44336; }
-.gallery-type.documents { background: #4caf50; }
+.gallery-type.image { background: #2196f3; }
+.gallery-type.video { background: #f44336; }
+.gallery-type.link { background: #4caf50; }
 .gallery-date {
     color: rgba(255,255,255,0.8);
     font-size: 0.85rem;
@@ -116,17 +116,6 @@ include VIEWPATH.'includes/frontend/Header.php';
     font-size: 1.1rem;
     margin: 0;
     line-height: 1.4;
-}
-.gallery-count {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: rgba(255,255,255,0.9);
-    color: var(--primary-teal);
-    padding: 4px 10px;
-    border-radius: 15px;
-    font-size: 0.8rem;
-    font-weight: 600;
 }
 
 /* ================= LIGHTBOX ================= */
@@ -192,107 +181,6 @@ include VIEWPATH.'includes/frontend/Header.php';
     opacity: 0.8;
 }
 
-/* ================= ALBUM DÉTAIL ================= */
-.album-header {
-    background: linear-gradient(135deg, var(--primary-teal), var(--dark-teal));
-    color: white;
-    padding: 60px 0;
-    margin-bottom: 40px;
-}
-.album-meta {
-    display: flex;
-    gap: 20px;
-    margin-top: 15px;
-    font-size: 0.9rem;
-    opacity: 0.9;
-}
-.album-stats {
-    background: white;
-    border-radius: 15px;
-    padding: 25px;
-    box-shadow: 0 10px 30px rgba(0,0,0,.1);
-}
-.stat-icon {
-    width: 50px;
-    height: 50px;
-    background: var(--light-bg);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--primary-teal);
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-}
-
-/* ================= MASONRY GALLERY ================= */
-.masonry-grid {
-    column-count: 3;
-    column-gap: 20px;
-}
-.masonry-item {
-    break-inside: avoid;
-    margin-bottom: 20px;
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,.08);
-}
-.masonry-img {
-    width: 100%;
-    height: auto;
-    display: block;
-    transition: transform 0.5s ease;
-}
-.masonry-item:hover .masonry-img {
-    transform: scale(1.05);
-}
-.masonry-caption {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(to top, rgba(0,0,0,.8), transparent);
-    color: white;
-    padding: 15px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-.masonry-item:hover .masonry-caption {
-    opacity: 1;
-}
-
-/* ================= DOCUMENTS ================= */
-.document-card {
-    background: white;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 5px 15px rgba(0,0,0,.08);
-    transition: all 0.3s ease;
-    border: 1px solid #eee;
-}
-.document-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0,0,0,.12);
-    border-color: var(--primary-teal);
-}
-.doc-icon {
-    width: 60px;
-    height: 60px;
-    background: var(--light-bg);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--primary-teal);
-    font-size: 1.8rem;
-    margin-bottom: 15px;
-}
-.doc-size {
-    color: #666;
-    font-size: 0.85rem;
-}
-
 /* ================= VIDÉOS ================= */
 .video-thumbnail {
     position: relative;
@@ -334,59 +222,34 @@ include VIEWPATH.'includes/frontend/Header.php';
     color: white;
     transform: translate(-50%, -50%) scale(1.1);
 }
-.video-duration {
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
-    background: rgba(0,0,0,.7);
-    color: white;
-    padding: 3px 10px;
-    border-radius: 15px;
-    font-size: 0.8rem;
-}
-
-/* ================= TÉLÉCHARGEMENTS ================= */
-.downloads-section {
-    background: linear-gradient(135deg, var(--primary-teal), var(--dark-teal));
-    color: white;
-    border-radius: 20px;
-    overflow: hidden;
-}
-.download-card {
-    background: rgba(255,255,255,0.1);
-    border-radius: 15px;
-    padding: 25px;
-    border: 1px solid rgba(255,255,255,0.2);
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-}
-.download-card:hover {
-    background: rgba(255,255,255,0.15);
-    transform: translateY(-5px);
-}
-.download-btn {
-    background: white;
-    color: var(--primary-teal);
-    border: none;
-    padding: 10px 25px;
-    border-radius: 25px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-.download-btn:hover {
-    background: var(--dark-teal);
-    color: white;
-    transform: translateY(-2px);
-}
 
 /* ================= RESPONSIVE ================= */
-@media (max-width: 992px) {
-    .masonry-grid { column-count: 2; }
-}
 @media (max-width: 768px) {
-    .masonry-grid { column-count: 1; }
     .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
     .lightbox-nav { width: 40px; height: 40px; font-size: 1.2rem; }
+}
+
+/* Style pour les liens externes */
+.link-item {
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.link-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
+    color: white;
+    text-decoration: none;
+}
+.link-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
 }
 </style>
 
@@ -398,215 +261,158 @@ include VIEWPATH.'includes/frontend/Header.php';
     </div>
 </section>
 
-
+<!-- ================= FILTRES ================= -->
+<section class="gallery-filters">
+    <div class="container">
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+            <button class="gallery-filter-btn active" data-filter="all">
+                <i class="fas fa-th me-2"></i> Tous
+            </button>
+            <button class="gallery-filter-btn" data-filter="image">
+                <i class="fas fa-image me-2"></i> Images
+            </button>
+            <button class="gallery-filter-btn" data-filter="video">
+                <i class="fas fa-video me-2"></i> Vidéos
+            </button>
+            <button class="gallery-filter-btn" data-filter="link">
+                <i class="fas fa-link me-2"></i> Liens
+            </button>
+        </div>
+    </div>
+</section>
 
 <!-- ================= GALLERIE PRINCIPALE ================= -->
 <section class="py-5">
     <div class="container">
-        <!-- Section Albums -->
-        <div class="row mb-5" id="albums-section" data-category="albums">
-            <div class="col-12 mb-4">
-                <div class="d-flex justify-content-between align-items-center">
-                    <h3 class="fw-bold">Albums Photos</h3>
-                    <a href="#" class="text-teal fw-bold text-decoration-none">
-                        Voir tous <i class="fas fa-arrow-right ms-2"></i>
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Album 1 -->
-            <div class="col-lg-3 col-md-6">
-                <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#albumModal" data-album="1">
-                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0" 
-                         class="gallery-media" 
-                         alt="Forum Innovation 2024">
-                    <span class="gallery-type photos">Photos</span>
-                    <span class="gallery-count">24 photos</span>
-                    <div class="gallery-overlay">
-                        <p class="gallery-date">15 Mars 2024</p>
-                        <h5 class="gallery-title">Forum Innovation Sociale 2024</h5>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Album 2 -->
-            <div class="col-lg-3 col-md-6">
-                <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#albumModal" data-album="2">
-                    <img src="https://images.unsplash.com/photo-1511578314322-379afb476865" 
-                         class="gallery-media" 
-                         alt="Atelier Coding">
-                    <span class="gallery-type photos">Photos</span>
-                    <span class="gallery-count">18 photos</span>
-                    <div class="gallery-overlay">
-                        <p class="gallery-date">10 Mars 2024</p>
-                        <h5 class="gallery-title">Atelier Coding pour Jeunes Filles</h5>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Album 3 -->
-            <div class="col-lg-3 col-md-6">
-                <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#albumModal" data-album="3">
-                    <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd" 
-                         class="gallery-media" 
-                         alt="Campagne Reforestation">
-                    <span class="gallery-type photos">Photos</span>
-                    <span class="gallery-count">32 photos</span>
-                    <div class="gallery-overlay">
-                        <p class="gallery-date">5 Mars 2024</p>
-                        <h5 class="gallery-title">Campagne de Reforestation 2024</h5>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Album 4 -->
-            <div class="col-lg-3 col-md-6">
-                <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#albumModal" data-album="4">
-                    <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72" 
-                         class="gallery-media" 
-                         alt="Conférence Leadership">
-                    <span class="gallery-type photos">Photos</span>
-                    <span class="gallery-count">21 photos</span>
-                    <div class="gallery-overlay">
-                        <p class="gallery-date">20 Février 2024</p>
-                        <h5 class="gallery-title">Conférence Leadership Jeune</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Section Vidéos -->
-        <div class="row mb-5" id="videos-section" data-category="videos">
-            <div class="col-12 mb-4">
-                <div class="d-flex justify-content-between align-items-center">
-                    <h3 class="fw-bold">Vidéos</h3>
-                    <a href="#" class="text-teal fw-bold text-decoration-none">
-                        Voir toutes <i class="fas fa-arrow-right ms-2"></i>
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Vidéo 1 -->
-            <div class="col-lg-4 col-md-6">
-                <div class="video-thumbnail mb-4" data-bs-toggle="modal" data-bs-target="#videoModal" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
-                    <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" 
-                         class="gallery-media" 
-                         alt="Documentaire">
-                    <div class="play-btn">
-                        <i class="fas fa-play"></i>
-                    </div>
-                    <span class="video-duration">15:30</span>
-                </div>
-                <h5 class="fw-bold mb-2">Documentaire: Notre Impact 2023</h5>
-                <p class="text-muted small">Bilan de nos réalisations sur l'année écoulée</p>
-            </div>
-            
-            <!-- Vidéo 2 -->
-            <div class="col-lg-4 col-md-6">
-                <div class="video-thumbnail mb-4" data-bs-toggle="modal" data-bs-target="#videoModal" data-video="https://www.youtube.com/embed/9bZkp7q19f0">
-                    <img src="https://img.youtube.com/vi/9bZkp7q19f0/maxresdefault.jpg" 
-                         class="gallery-media" 
-                         alt="Témoignages">
-                    <div class="play-btn">
-                        <i class="fas fa-play"></i>
-                    </div>
-                    <span class="video-duration">8:45</span>
-                </div>
-                <h5 class="fw-bold mb-2">Témoignages des Bénéficiaires</h5>
-                <p class="text-muted small">Histoires inspirantes de jeunes que nous accompagnons</p>
-            </div>
-            
-            <!-- Vidéo 3 -->
-            <div class="col-lg-4 col-md-6">
-                <div class="video-thumbnail mb-4" data-bs-toggle="modal" data-bs-target="#videoModal" data-video="https://www.youtube.com/embed/LDU_Txk06tM">
-                    <img src="https://img.youtube.com/vi/LDU_Txk06tM/maxresdefault.jpg" 
-                         class="gallery-media" 
-                         alt="Reportage">
-                    <div class="play-btn">
-                        <i class="fas fa-play"></i>
-                    </div>
-                    <span class="video-duration">12:20</span>
-                </div>
-                <h5 class="fw-bold mb-2">Reportage: Les Jardins Communautaires</h5>
-                <p class="text-muted small">Comment les jardins transforment les quartiers</p>
-            </div>
-        </div>
+        <?php if (!empty($galleries)): ?>
+            <div class="gallery-grid" id="galleryContainer">
+                <?php foreach ($galleries as $gallery): ?>
+                    <?php if ($gallery['TypeMedia'] == 'image'): ?>
+                        <!-- CARD IMAGE -->
+                        <div class="gallery-item" 
+                             data-type="image"
+                             data-bs-toggle="modal" 
+                             data-bs-target="#imageModal"
+                             data-image="<?= base_url('attachments/gallery/' . $gallery['Media']) ?>"
+                             data-description="<?= htmlspecialchars($gallery['Description'] ?? '') ?>"
+                             data-date="<?= date('d/m/Y', strtotime($gallery['Created_at'])) ?>">
+                            
+                            <img src="<?= base_url('attachments/gallery/' . $gallery['Media']) ?>" 
+                                 class="gallery-media" 
+                                 alt="<?= htmlspecialchars($gallery['Description'] ?? 'Image') ?>"
+                                 onerror="this.src='https://via.placeholder.com/400x300?text=Image+Non+Disponible'">
+                            
+                            <span class="gallery-type image">Image</span>
+                            
+                            <div class="gallery-overlay">
+                                <p class="gallery-date">
+                                    <i class="far fa-calendar-alt me-1"></i>
+                                    <?= date('d/m/Y', strtotime($gallery['Created_at'])) ?>
+                                </p>
+                                <h5 class="gallery-title">
+                                    <?= !empty($gallery['Description']) ? htmlspecialchars(substr($gallery['Description'], 0, 60)) . '...' : 'Sans description' ?>
+                                </h5>
+                            </div>
+                        </div>
 
+                    <?php elseif ($gallery['TypeMedia'] == 'video'): ?>
+                        <!-- CARD VIDEO -->
+                        <div class="gallery-item"
+                             data-type="video"
+                             data-bs-toggle="modal" 
+                             data-bs-target="#videoModal"
+                             data-video="<?= base_url('attachments/gallery/' . $gallery['Media']) ?>"
+                             data-description="<?= htmlspecialchars($gallery['Description'] ?? '') ?>"
+                             data-date="<?= date('d/m/Y', strtotime($gallery['Created_at'])) ?>">
+                            
+                            <video class="gallery-media" muted>
+                                <source src="<?= base_url('attachments/gallery/' . $gallery['Media']) ?>" type="video/mp4">
+                            </video>
+                            
+                            <span class="gallery-type video">Vidéo</span>
+                            
+                            <div class="video-play-overlay">
+                                <div class="play-btn">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="gallery-overlay">
+                                <p class="gallery-date">
+                                    <i class="far fa-calendar-alt me-1"></i>
+                                    <?= date('d/m/Y', strtotime($gallery['Created_at'])) ?>
+                                </p>
+                                <h5 class="gallery-title">
+                                    <?= !empty($gallery['Description']) ? htmlspecialchars(substr($gallery['Description'], 0, 60)) . '...' : 'Vidéo' ?>
+                                </h5>
+                            </div>
+                        </div>
 
-
-        <!-- Vidéo1 YOUTUBE AVEC LINK-->
-            <div class="col-lg-4 col-md-6">
-                <div class="video-thumbnail mb-4" data-bs-toggle="modal" data-bs-target="#videoModal" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
-                    <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" 
-                         class="gallery-media" 
-                         alt="Documentaire">
-                    <div class="play-btn">
-                        <i class="fas fa-play"></i>
-                    </div>
-                    <span class="video-duration">15:30</span>
-                </div>
-                <h5 class="fw-bold mb-2">Documentaire: Notre Impact 2023</h5>
-                <p class="text-muted small">Bilan de nos réalisations sur l'année écoulée</p>
+                    <?php else: ?>
+                        <!-- CARD LINK (Youtube/autres) -->
+                        <a href="<?= htmlspecialchars($gallery['Media']) ?>" 
+                           class="gallery-item link-item"
+                           data-type="link"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            
+                            <div class="link-icon">
+                                <i class="fab fa-youtube"></i>
+                            </div>
+                            
+                            <span class="gallery-type link">Lien</span>
+                            
+                            <div class="text-center p-4">
+                                <h5 class="fw-bold mb-2">
+                                    <?= !empty($gallery['Description']) ? htmlspecialchars(substr($gallery['Description'], 0, 50)) . '...' : 'Lien externe' ?>
+                                </h5>
+                                <p class="small mb-0 opacity-75">
+                                    <i class="far fa-calendar-alt me-1"></i>
+                                    <?= date('d/m/Y', strtotime($gallery['Created_at'])) ?>
+                                </p>
+                                <p class="small mt-2">
+                                    <i class="fas fa-external-link-alt me-1"></i>
+                                    Cliquer pour ouvrir
+                                </p>
+                            </div>
+                        </a>
+                    <?php endif; ?>
+                <?php endforeach; ?>
             </div>
-            
-            <!-- Vidéo 2 YOUTUBE AVEC LINK -->
-            <div class="col-lg-4 col-md-6">
-                <div class="video-thumbnail mb-4" data-bs-toggle="modal" data-bs-target="#videoModal" data-video="https://www.youtube.com/embed/9bZkp7q19f0">
-                    <img src="https://img.youtube.com/vi/9bZkp7q19f0/maxresdefault.jpg" 
-                         class="gallery-media" 
-                         alt="Témoignages">
-                    <div class="play-btn">
-                        <i class="fas fa-play"></i>
-                    </div>
-                    <span class="video-duration">8:45</span>
+        <?php else: ?>
+            <!-- MESSAGE SI AUCUNE GALERIE -->
+            <div class="text-center py-5">
+                <div class="py-5">
+                    <i class="bx bx-image-alt bx-lg text-muted mb-3" style="font-size: 4rem;"></i>
+                    <h4 class="text-muted mb-3">Aucun média disponible</h4>
+                    <p class="text-muted">La galerie sera bientôt mise à jour avec nos derniers médias.</p>
                 </div>
-                <h5 class="fw-bold mb-2">Témoignages des Bénéficiaires</h5>
-                <p class="text-muted small">Histoires inspirantes de jeunes que nous accompagnons</p>
             </div>
-            
-            <!-- Vidéo 3 YOUTUBE AVEC LINK-->
-            <div class="col-lg-4 col-md-6">
-                <div class="video-thumbnail mb-4" data-bs-toggle="modal" data-bs-target="#videoModal" data-video="https://www.youtube.com/embed/LDU_Txk06tM">
-                    <img src="https://img.youtube.com/vi/LDU_Txk06tM/maxresdefault.jpg" 
-                         class="gallery-media" 
-                         alt="Reportage">
-                    <div class="play-btn">
-                        <i class="fas fa-play"></i>
-                    </div>
-                    <span class="video-duration">12:20</span>
-                </div>
-                <h5 class="fw-bold mb-2">Reportage: Les Jardins Communautaires</h5>
-                <p class="text-muted small">Comment les jardins transforment les quartiers</p>
-            </div>
-        </div>
-
+        <?php endif; ?>
     </div>
 </section>
 
-
-
-<!-- ================= MODAL VIDÉO ================= -->
-<div class="modal fade lightbox-modal" id="videoModal" tabindex="-1" aria-hidden="true">
+<!-- ================= MODAL IMAGE ================= -->
+<div class="modal fade lightbox-modal" id="imageModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
-            <div class="modal-body">
+            <div class="modal-body p-0 position-relative">
                 <button type="button" class="btn-close position-absolute" 
                         data-bs-dismiss="modal" 
                         style="top:15px;right:15px;z-index:10;background:white;padding:10px;">
                 </button>
                 
-                <iframe id="videoPlayer" class="lightbox-video" 
-                        src="" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                </iframe>
+                <img id="lightboxImage" class="lightbox-img" src="" alt="">
                 
                 <div class="lightbox-caption">
-                    <h5 id="videoTitle">Titre de la vidéo</h5>
+                    <h5 id="imageTitle">Titre de l'image</h5>
                     <div class="lightbox-info">
-                        <span id="videoDuration">Durée</span>
-                        <span id="videoDate">Date</span>
+                        <span id="imageDate">
+                            <i class="far fa-calendar-alt me-1"></i> Date
+                        </span>
+                        <button class="btn btn-sm btn-light" onclick="downloadImage()">
+                            <i class="fas fa-download me-1"></i> Télécharger
+                        </button>
                     </div>
                 </div>
             </div>
@@ -614,6 +420,272 @@ include VIEWPATH.'includes/frontend/Header.php';
     </div>
 </div>
 
+<!-- ================= MODAL VIDÉO ================= -->
+<div class="modal fade lightbox-modal" id="videoModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-body p-0 position-relative">
+                <button type="button" class="btn-close position-absolute" 
+                        data-bs-dismiss="modal" 
+                        style="top:15px;right:15px;z-index:10;background:white;padding:10px;">
+                </button>
+                
+                <video id="lightboxVideo" class="lightbox-video" controls>
+                    <source id="videoSource" src="" type="video/mp4">
+                    Votre navigateur ne supporte pas la lecture de vidéos.
+                </video>
+                
+                <div class="lightbox-caption">
+                    <h5 id="videoTitle">Titre de la vidéo</h5>
+                    <div class="lightbox-info">
+                        <span id="videoDate">
+                            <i class="far fa-calendar-alt me-1"></i> Date
+                        </span>
+                        <button class="btn btn-sm btn-light" onclick="downloadVideo()">
+                            <i class="fas fa-download me-1"></i> Télécharger
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
+<!-- ================= MODAL YOUTUBE ================= -->
+<div class="modal fade lightbox-modal" id="youtubeModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-body p-0 position-relative">
+                <button type="button" class="btn-close position-absolute" 
+                        data-bs-dismiss="modal" 
+                        style="top:15px;right:15px;z-index:10;background:white;padding:10px;">
+                </button>
+                
+                <iframe id="youtubePlayer" class="lightbox-video" 
+                        src="" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                </iframe>
+                
+                <div class="lightbox-caption">
+                    <h5 id="youtubeTitle">Titre YouTube</h5>
+                    <div class="lightbox-info">
+                        <span id="youtubeDate">
+                            <i class="far fa-calendar-alt me-1"></i> Date
+                        </span>
+                        <a id="youtubeLink" href="#" target="_blank" class="btn btn-sm btn-light">
+                            <i class="fas fa-external-link-alt me-1"></i> Ouvrir sur YouTube
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // ========== FILTRAGE DES MÉDIAS ==========
+    const filterButtons = document.querySelectorAll('.gallery-filter-btn');
+    const galleryItems = document.querySelectorAll('.gallery-item, .link-item');
+    
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Mettre à jour le bouton actif
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            const filter = this.dataset.filter;
+            
+            // Filtrer les éléments
+            galleryItems.forEach(item => {
+                const type = item.dataset.type;
+                
+                if (filter === 'all' || type === filter) {
+                    item.style.display = 'block';
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'scale(1)';
+                    }, 10);
+                } else {
+                    item.style.opacity = '0';
+                    item.style.transform = 'scale(0.8)';
+                    setTimeout(() => {
+                        item.style.display = 'none';
+                    }, 300);
+                }
+            });
+        });
+    });
+    
+    // ========== MODAL IMAGE ==========
+    const imageModal = document.getElementById('imageModal');
+    if (imageModal) {
+        imageModal.addEventListener('show.bs.modal', function(event) {
+            const button = event.relatedTarget;
+            const imageUrl = button.getAttribute('data-image');
+            const description = button.getAttribute('data-description');
+            const date = button.getAttribute('data-date');
+            
+            document.getElementById('lightboxImage').src = imageUrl;
+            document.getElementById('imageTitle').textContent = description || 'Image';
+            document.getElementById('imageDate').innerHTML = `<i class="far fa-calendar-alt me-1"></i> ${date}`;
+            
+            // Stocker l'URL pour le téléchargement
+            window.currentImageUrl = imageUrl;
+        });
+    }
+    
+    // ========== MODAL VIDÉO ==========
+    const videoModal = document.getElementById('videoModal');
+    if (videoModal) {
+        videoModal.addEventListener('show.bs.modal', function(event) {
+            const button = event.relatedTarget;
+            const videoUrl = button.getAttribute('data-video');
+            const description = button.getAttribute('data-description');
+            const date = button.getAttribute('data-date');
+            
+            const videoSource = document.getElementById('videoSource');
+            const videoElement = document.getElementById('lightboxVideo');
+            
+            videoSource.src = videoUrl;
+            videoElement.load();
+            
+            document.getElementById('videoTitle').textContent = description || 'Vidéo';
+            document.getElementById('videoDate').innerHTML = `<i class="far fa-calendar-alt me-1"></i> ${date}`;
+            
+            // Stocker l'URL pour le téléchargement
+            window.currentVideoUrl = videoUrl;
+        });
+        
+        // Réinitialiser la vidéo à la fermeture
+        videoModal.addEventListener('hidden.bs.modal', function() {
+            const videoElement = document.getElementById('lightboxVideo');
+            videoElement.pause();
+            videoElement.currentTime = 0;
+        });
+    }
+    
+    // ========== DÉTECTION YOUTUBE ==========
+    function isYouTubeLink(url) {
+        return url.includes('youtube.com') || url.includes('youtu.be');
+    }
+    
+    function getYouTubeEmbedUrl(url) {
+        // Convertir les différentes formes d'URL YouTube en URL embed
+        let videoId = '';
+        
+        if (url.includes('youtu.be/')) {
+            videoId = url.split('youtu.be/')[1];
+        } else if (url.includes('youtube.com/watch?v=')) {
+            videoId = url.split('v=')[1];
+            const ampersandPosition = videoId.indexOf('&');
+            if (ampersandPosition !== -1) {
+                videoId = videoId.substring(0, ampersandPosition);
+            }
+        } else if (url.includes('youtube.com/embed/')) {
+            videoId = url.split('embed/')[1];
+        }
+        
+        return `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+    }
+    
+    // Gestion des liens YouTube dans les cartes
+    document.querySelectorAll('.link-item[data-type="link"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+            const url = this.href;
+            
+            if (isYouTubeLink(url)) {
+                e.preventDefault();
+                
+                // Préparer le modal YouTube
+                const description = this.querySelector('h5').textContent;
+                const dateElement = this.querySelector('.small.opacity-75');
+                const date = dateElement ? dateElement.textContent.replace('Cliquer pour ouvrir', '').trim() : '';
+                
+                document.getElementById('youtubePlayer').src = getYouTubeEmbedUrl(url);
+                document.getElementById('youtubeTitle').textContent = description;
+                document.getElementById('youtubeDate').innerHTML = `<i class="far fa-calendar-alt me-1"></i> ${date}`;
+                document.getElementById('youtubeLink').href = url;
+                
+                // Ouvrir le modal
+                const youtubeModal = new bootstrap.Modal(document.getElementById('youtubeModal'));
+                youtubeModal.show();
+            }
+            // Pour les autres liens, la navigation normale se fera
+        });
+    });
+    
+    // ========== FONCTIONS DE TÉLÉCHARGEMENT ==========
+    window.downloadImage = function() {
+        if (window.currentImageUrl) {
+            const link = document.createElement('a');
+            link.href = window.currentImageUrl;
+            link.download = 'image-' + Date.now() + '.jpg';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    };
+    
+    window.downloadVideo = function() {
+        if (window.currentVideoUrl) {
+            const link = document.createElement('a');
+            link.href = window.currentVideoUrl;
+            link.download = 'video-' + Date.now() + '.mp4';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    };
+    
+    // ========== ANIMATION AU SCROLL ==========
+    function animateOnScroll() {
+        const items = document.querySelectorAll('.gallery-item, .link-item');
+        
+        items.forEach(item => {
+            const itemTop = item.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            
+            if (itemTop < windowHeight - 100) {
+                item.style.opacity = '1';
+                item.style.transform = 'translateY(0)';
+            }
+        });
+    }
+    
+    // Initialiser l'animation
+    galleryItems.forEach(item => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(20px)';
+        item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    });
+    
+    setTimeout(animateOnScroll, 100);
+    window.addEventListener('scroll', animateOnScroll);
+    
+    // ========== LAZY LOADING DES IMAGES ==========
+    const lazyImages = document.querySelectorAll('.gallery-media[src]');
+    
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                if (img.dataset.src) {
+                    img.src = img.dataset.src;
+                    img.removeAttribute('data-src');
+                }
+                observer.unobserve(img);
+            }
+        });
+    });
+    
+    lazyImages.forEach(img => {
+        if (img.complete) return;
+        imageObserver.observe(img);
+    });
+});
+</script>
 
 <?php include VIEWPATH.'includes/frontend/Footer.php'; ?>
