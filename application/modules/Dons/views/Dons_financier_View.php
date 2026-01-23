@@ -15,7 +15,7 @@
                 </nav>
             </div>
             <div class="ms-auto">
-                <a class="btn btn-outline-primary" href="javascript:;" data-bs-toggle="modal" data-bs-target="#newDonF">Nouvelle Transaction</a>
+                <a class="btn btn-outline-primary" href="<?=base_url('Dons')?>">Nouveau</a>
             </div>
         </div>
 
@@ -66,7 +66,7 @@
                                             <h5 class="modal-title">Modifier Transaction #<?=$value['id']?></h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                         </div>
-                                        <form action="<?=base_url('Dons_Financiers/Update')?>" method="POST">
+                                        <form action="<?=base_url('Dons/UpdateFinanciers')?>" method="POST">
                                             <input type="hidden" name="id" value="<?=$value['id']?>">
                                             <div class="modal-body row g-3">
                                                 <div class="col-12">
@@ -103,56 +103,30 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="modal fade" id="delete_<?=$value['id']?>" tabindex="-1">
+                                <div class="modal-dialog">
+                                    <div class="modal-content text-center">
+                                        <form action="<?=base_url('Dons/DeleteFinanciers')?>" method="POST">
+                                            <input type="hidden" name="id" value="<?=$value['id']?>">
+                                            <div class="modal-body p-4">
+                                                <i class="bx bx-trash text-danger display-4"></i>
+                                                <h5 class="mt-2">Supprimer ?</h5>
+                                                <p>Voulez-vous supprimer cette contribution de <strong><?=$value['nom_complet']?></strong> ?</p>
+                                            </div>
+                                            <div class="modal-footer border-0 d-flex justify-content-center">
+                                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Annuler</button>
+                                                <button type="submit" class="btn btn-danger">Supprimer</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                             <?php } ?>
                         </tbody>
                     </table>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="newDonF" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Nouvelle Transaction Financière</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <form action="<?=base_url('Dons_Financiers/Create')?>" method="POST">
-                <div class="modal-body row g-3">
-                    <div class="col-12">
-                        <label class="form-label">Sélectionner le Donateur</label>
-                        <select class="form-select" name="don_id" required>
-                            <option value="">-- Choisir --</option>
-                            <?php foreach($donateurs as $d): ?>
-                                <option value="<?=$d['id']?>"><?=$d['nom_complet']?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label">Montant</label>
-                        <input type="number" step="0.01" class="form-control" name="montant" placeholder="0.00" required>
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label">Méthode de Paiement</label>
-                        <select class="form-select" name="id_methode_paiement">
-                            <?php foreach($modes as $m): ?>
-                                <option value="<?=$m['id_mode_payement']?>"><?=$m['description']?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                    <div class="col-12">
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" name="is_mensuel" id="newIsMensuel">
-                            <label class="form-check-label" for="newIsMensuel">C'est un don mensuel</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary w-100">Enregistrer</button>
-                </div>
-            </form>
         </div>
     </div>
 </div>

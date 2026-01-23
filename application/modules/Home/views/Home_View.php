@@ -12,6 +12,7 @@
     /* Utilitaires */
     .text-teal { color: var(--primary-teal) !important; }
     .bg-teal { background-color: var(--primary-teal) !important; }
+     .bg-light-teal { background-color: var(--light-teal) !important; }
     .btn-teal {
         background-color: var(--primary-teal);
         border: none;

@@ -15,110 +15,135 @@ class Dons extends MY_Controller {
     }
 
      public function Create() {
+ $nom        = $this->input->post('nom_complet', true);
+    $email      = $this->input->post('email', true);
+    $phone      = $this->input->post('telephone', true);
+    $pays       = $this->input->post('pays', true);
+    $type_don   = $this->input->post('type_don', true);
+    $id_mode_payement = $this->input->post('id_mode_payement', true);
 
+    // Vérifier si le donateur existe déjà
+    $existing = $this->Model->read('dons', ['email' => $email]);
 
-        $montant = $this->input->post('montant');
-        $nom = $this->input->post('nom_complet');
-        $email = $this->input->post('email');
-        $phone = $this->input->post('telephone');
-        $pays = $this->input->post('pays');
-        $is_mensuel = $this->input->post('paiement_recurrent') ? 1 : 0;
-        $id_mode_payement = $this->input->post('id_mode_payement');
-        // Vérifier si le donateur existe déjà
-        $existing = $this->Model->read('dons', ['email' => $email]);
+    if (!empty($existing)) {
+        $don_id = $existing[0]['id'];
+    } else {
+        // Créer un nouveau donateur
+        $data = [
+            'nom_complet' => $nom,
+            'email'       => $email,
+            'telephone'   => $phone,
+            'pays'        => $pays,
+            'type_don'    => $type_don
+        ];
+        $don_id = $this->Model->createLastId('dons', $data);
+    }
 
-        // Vérifier si le donateur existe déjà
-        $existing = $this->Model->read('dons', ['email' => $email]);
+    $success = false;
 
-        if (!empty($existing)) {
-            $don_id = $existing[0]['id'];
-        } else {
-            // Don commun
-            $data = array(
-                'nom_complet' => $nom,
-                'email'       => $email,
-                'telephone'   => $phone,
-                'pays'        => $pays,
-                'type_don'    => $type_don,
-            );
-            $don_id = $this->Model->createLastId('dons', $data);
-    
+    // Créer les détails selon le type de don
+    switch ($type_don) {
+        case 'financier':
+            $financier = [
+                'don_id'             => $don_id,
+                'montant'            => $this->input->post('montant', true),
+                'id_methode_paiement'=> $id_mode_payement,
+                'is_mensuel'         => $this->input->post('paiement_recurrent') ? 1 : 0
+            ];
+            $success = $this->Model->create('dons_financiers', $financier);
+            break;
 
-        } 
+        case 'materiel':
+            $materiel = [
+                'don_id'              => $don_id,
+                'description_materiel'=> $this->input->post('description_materiel', true)
+            ];
+            $success = $this->Model->create('dons_materiels', $materiel);
+            break;
 
-        $success = false;
-        
-        // Créer les détails selon le type de don
-        switch ($type_don) {
-            case 'financier':
-                $financier = [
-                    'don_id' => $don_id,
-                    'montant' => $this->input->post('montant', true),
-                    'id_methode_paiement' => $this->input->post('id_mode_payement', true),
-                    'is_mensuel' => $this->input->post('paiement_recurrent') ? 1 : 0,
-                    'created_at' => date('Y-m-d H:i:s')
-                ];
-                $success = $this->Model->create('dons_financiers', $financier);
-                break;
+        case 'competence':
+            $competence = [
+                'don_id'                  => $don_id,
+                'description_contribution'=> $this->input->post('description_competence', true)
+            ];
+            $success = $this->Model->create('dons_competences', $competence);
+            break;
+    }
 
-            case 'materiel':
-                $materiel = [
-                    'don_id' => $don_id,
-                    'description_materiel' => $this->input->post('description_materiel', true),
-                    'created_at' => date('Y-m-d H:i:s')
-                ];
-                $success = $this->Model->create('dons_materiels', $materiel);
-                break;
+    if ($success) {
+        $this->session->set_flashdata('sms', 
+            '<div class="alert alert-success">Le don a été enregistré avec succès !</div>'
+        );
+    } else {
+        $this->session->set_flashdata('sms', 
+            '<div class="alert alert-danger">Erreur lors de l\'enregistrement du détail du don.</div>'
+        );
+    }
 
-            case 'competence':
-                $competence = [
-                    'don_id' => $don_id,
-                    'description_contribution' => $this->input->post('description_competence', true),
-                    'created_at' => date('Y-m-d H:i:s')
-                ];
-                $success = $this->Model->create('dons_competences', $competence);
-                break;
-        }
+    redirect(base_url('Dons'));
+    }
 
-        if ($success) {
-            $this->session->set_flashdata('sms', 
-                '<div class="alert alert-success">Le don a été enregistré avec succès !</div>'
-            );
-        } else {
-            $this->session->set_flashdata('sms', 
-                '<div class="alert alert-danger">Erreur lors de l\'enregistrement du détail du don.</div>'
-            );
-        }
+    public function Update() {
+       $id = $this->input->post('id', true);
+    $nom        = $this->input->post('nom_complet', true);
+    $email      = $this->input->post('email', true);
+    $phone      = $this->input->post('telephone', true);
+    $pays       = $this->input->post('pays', true);
+
+    $data = [
+        'nom_complet' => $nom,
+        'email'       => $email,
+        'telephone'   => $phone,
+        'pays'        => $pays
+    ];
+
+    $updated = $this->Model->update('dons', ['id' => $id], $data);
+
+    if ($updated) {
+        $this->session->set_flashdata('sms', 
+            '<div class="alert alert-success">Donateur mis à jour avec succès !</div>'
+        );
+    } else {
+        $this->session->set_flashdata('sms', 
+            '<div class="alert alert-danger">Erreur lors de la mise à jour du donateur.</div>'
+        );
+    }
+
 
         redirect(base_url('Dons'));
     }
 
-    public function Update() {
-        $id = $this->input->post('id');
-        $data = [
-            'type_don'    => $this->input->post('type_don'),
-            'nom_complet' => $this->input->post('nom_complet'),
-            'email'       => $this->input->post('email'),
-            'telephone'   => $this->input->post('telephone'),
-            'pays'        => $this->input->post('pays'),
-            'statut'      => $this->input->post('statut')
-        ];
-
-        $this->Model->update('dons', ['id' => $id], $data);
-        $this->session->set_flashdata('sms', '<div class="alert alert-info">Don mis à jour.</div>');
-        redirect('Dons');
-    }
-
     public function Delete() {
-        $id = $this->input->post('id');
-        $this->Model->delete('dons', ['id' => $id]);
-        $this->session->set_flashdata('sms', '<div class="alert alert-danger">Don supprimé.</div>');
-        redirect('Dons');
+       
+    $id = $this->input->post('id', true);
+
+    // Supprimer les détails associés selon le type
+    $this->Model->delete('dons_financiers', ['don_id' => $id]);
+    $this->Model->delete('dons_materiels', ['don_id' => $id]);
+    $this->Model->delete('dons_competences', ['don_id' => $id]);
+
+
+    $deleted = $this->Model->delete('dons', ['id' => $id]);
+
+    if ($deleted) {
+        $this->session->set_flashdata('sms', 
+            '<div class="alert alert-success">Donateur supprimé avec succès !</div>'
+        );
+    } else {
+        $this->session->set_flashdata('sms', 
+            '<div class="alert alert-danger">Erreur lors de la suppression du donateur.</div>'
+        );
     }
+
+    redirect(base_url('Dons'));
+    }
+
+
+
 
     public function Financiers() {
         // Lecture avec jointures pour avoir les noms des donateurs et modes de paiement
-        $this->db->select('df.*, d.nom_complet, mp.description_materiel');
+        $this->db->select('df.*, d.nom_complet,mp.description');
         $this->db->from('dons_financiers df');
         $this->db->join('dons d', 'd.id = df.don_id');
         $this->db->join('mode_payement mp', 'mp.id_mode_payement = df.id_methode_paiement', 'left');
@@ -132,19 +157,7 @@ class Dons extends MY_Controller {
         $this->load->view('Dons_financier_View', $data);
     }
 
-    public function CreateFinanciers() {
-        $data = [
-            'don_id'              => $this->input->post('don_id'),
-            'montant'             => $this->input->post('montant'),
-            'id_methode_paiement' => $this->input->post('id_methode_paiement'),
-            'is_mensuel'          => $this->input->post('is_mensuel') ? 1 : 0
-        ];
-
-        $this->Model->create('dons_financiers', $data);
-        $this->session->set_flashdata('sms', '<div class="alert alert-success">Transaction financière enregistrée.</div>');
-        redirect('Dons_Financiers');
-    }
-
+    
     public function UpdateFinanciers() {
         $id = $this->input->post('id');
         $data = [
@@ -156,15 +169,17 @@ class Dons extends MY_Controller {
 
         $this->Model->update('dons_financiers', ['id' => $id], $data);
         $this->session->set_flashdata('sms', '<div class="alert alert-info">Transaction mise à jour.</div>');
-        redirect('Dons_Financiers');
+        redirect('Dons/Financiers');
     }
 
     public function DeleteFinanciers() {
         $id = $this->input->post('id');
         $this->Model->delete('dons_financiers', ['id' => $id]);
         $this->session->set_flashdata('sms', '<div class="alert alert-danger">Transaction supprimée.</div>');
-        redirect('Dons_Financiers');
+        redirect('Dons/Financiers');
     }
+
+
 
 
 
@@ -182,18 +197,8 @@ class Dons extends MY_Controller {
         $this->load->view('Dons_Competences_View', $data);
     }
 
-    public function createCompetences() {
-        $data = [
-            'don_id'                   => $this->input->post('don_id'),
-            'description_contribution' => $this->input->post('description_contribution')
-        ];
 
-        $this->Model->create('dons_competences', $data);
-        $this->session->set_flashdata('sms', '<div class="alert alert-success">Don de compétence enregistré.</div>');
-        redirect('Dons_Competences');
-    }
-
-    public function updateompetences() {
+    public function UpdateCompetences() {
         $id = $this->input->post('id');
         $data = [
             'don_id'                   => $this->input->post('don_id'),
@@ -202,14 +207,14 @@ class Dons extends MY_Controller {
 
         $this->Model->update('dons_competences', ['id' => $id], $data);
         $this->session->set_flashdata('sms', '<div class="alert alert-info">Description mise à jour.</div>');
-        redirect('Dons_Competences');
+        redirect('Dons/Competences');
     }
 
-    public function deleteCompetences() {
+    public function DeleteCompetences() {
         $id = $this->input->post('id');
         $this->Model->delete('dons_competences', ['id' => $id]);
         $this->session->set_flashdata('sms', '<div class="alert alert-danger">Entrée supprimée.</div>');
-        redirect('Dons_Competences');
+        redirect('Dons/Competences');
     }
 
 
@@ -230,17 +235,6 @@ class Dons extends MY_Controller {
         $this->load->view('Dons_materiel_View', $data);
     }
 
-    public function CreateMateriels() {
-        $data = [
-            'don_id'               => $this->input->post('don_id'),
-            'description_materiel' => $this->input->post('description_materiel')
-        ];
-
-        $this->Model->create('dons_materiels', $data);
-        $this->session->set_flashdata('sms', '<div class="alert alert-success">Don matériel enregistré avec succès.</div>');
-        redirect('Dons_Materiels');
-    }
-
     public function UpdateMateriels() {
         $id = $this->input->post('id');
         $data = [
@@ -250,13 +244,13 @@ class Dons extends MY_Controller {
 
         $this->Model->update('dons_materiels', ['id' => $id], $data);
         $this->session->set_flashdata('sms', '<div class="alert alert-info">Description du matériel mise à jour.</div>');
-        redirect('Dons_Materiels');
+        redirect('Dons/Materiels');
     }
 
     public function DeleteMateriels() {
         $id = $this->input->post('id');
         $this->Model->delete('dons_materiels', ['id' => $id]);
         $this->session->set_flashdata('sms', '<div class="alert alert-danger">Enregistrement supprimé.</div>');
-        redirect('Dons_Materiels');
+        redirect('Dons/Materiels');
     }
 }

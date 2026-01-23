@@ -34,6 +34,9 @@
             margin: 0 auto;
         }
 
+        
+   
+
         a {
             text-decoration: none;
             transition: all 0.3s ease;
@@ -790,31 +793,7 @@
 
   
 
-    /* ================= UTILITY CLASSES  ABOUT US================= */
-    .text-teal { color: var(--primary-teal) !important; }
-    .bg-teal { background-color: var(--primary-teal) !important; }
-    .bg-light-teal { background-color: var(--light-teal) !important; }
-    .border-teal { border-color: var(--primary-teal) !important; }
 
-
-    /* ================= DEVISE ================= */
-    .devise-banner {
-        background: linear-gradient(135deg, var(--primary-teal), var(--dark-teal));
-        color: #fff;
-        padding: 60px 0;
-    }
-
-    .devise-banner::before {
-        content: "";
-        position: absolute;
-        top: -50%;
-        right: -50%;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
-        background-size: 30px 30px;
-        opacity: 0.3;
-    }
 
     /* ================= MISSION/VISION CARDS ================= */
     .mission-card {

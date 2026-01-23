@@ -3,7 +3,9 @@
 
 <style>
 :root { --primary-teal: #1a8c78; --dark-teal: #146c5c; }
-.donate-hero { padding: 140px 0 100px; background: linear-gradient(135deg, rgba(26,140,120,0.9), rgba(20,108,92,0.95)), url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1600') center/cover; color: white; text-align: center; }
+.donate-hero { padding: 140px 0 100px;position: relative; background: linear-gradient(135deg, rgba(0,0,0,.65), rgba(0,0,0,.65)), url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1600') center/cover; color: white; text-align: center; }
+
+
 .donation-card { border-radius: 30px; margin-top: -120px; box-shadow: 0 25px 60px rgba(0,0,0,0.12); background: white; }
 .don-type-selector { display: flex; gap:10px; margin-bottom:30px; }
 .don-type-btn { flex:1; border:none; border-radius:50px; padding:15px; cursor:pointer; font-weight:600; transition:0.3s; background: #f8f9fa; }
@@ -14,6 +16,7 @@
 
 <section class="donate-hero">
     <div class="container">
+        <div class="flur"></div>
         <h1 class="display-4 fw-bold mb-3">Faites un Don</h1>
         <p class="lead opacity-75 fs-5">Soutenez notre cause en quelques clics.</p>
     </div>

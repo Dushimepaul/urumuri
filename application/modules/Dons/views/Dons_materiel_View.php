@@ -15,7 +15,7 @@
                 </nav>
             </div>
             <div class="ms-auto">
-                <a class="btn btn-outline-primary" href="javascript:;" data-bs-toggle="modal" data-bs-target="#newMateriel">Nouveau Don</a>
+                <a class="btn btn-outline-primary" href="<?=base_url('Dons')?>">Nouveau</a>
             </div>
         </div>
 
@@ -63,7 +63,7 @@
                                             <h5 class="modal-title">Modifier le matériel</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                         </div>
-                                        <form action="<?=base_url('Dons_Materiels/Update')?>" method="POST">
+                                        <form action="<?=base_url('Dons/UpdateMateriels')?>" method="POST">
                                             <input type="hidden" name="id" value="<?=$value['id']?>">
                                             <div class="modal-body row g-3">
                                                 <div class="col-12">
@@ -91,7 +91,7 @@
                             <div class="modal fade" id="delete_<?=$value['id']?>" tabindex="-1">
                                 <div class="modal-dialog">
                                     <div class="modal-content text-center">
-                                        <form action="<?=base_url('Dons_Materiels/Delete')?>" method="POST">
+                                        <form action="<?=base_url('Dons/deleteMateriels')?>" method="POST">
                                             <input type="hidden" name="id" value="<?=$value['id']?>">
                                             <div class="modal-body p-4">
                                                 <i class="bx bx-trash-alt text-danger display-4"></i>
@@ -111,38 +111,6 @@
                     </table>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="newMateriel" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Enregistrer un Don Matériel</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <form action="<?=base_url('Dons_Materiels/Create')?>" method="POST">
-                <div class="modal-body row g-3">
-                    <div class="col-12">
-                        <label class="form-label">Donateur</label>
-                        <select class="form-select" name="don_id" required>
-                            <option value="">-- Choisir le donateur --</option>
-                            <?php foreach($donateurs as $d): ?>
-                                <option value="<?=$d['id']?>"><?=$d['nom_complet']?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                    <div class="col-12">
-                        <label class="form-label">Description (ex: Moto, Ordinateur, Habits...)</label>
-                        <textarea class="form-control" name="description_materiel" rows="4" placeholder="Détaillez le matériel ici..." required></textarea>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                    <button type="submit" class="btn btn-primary">Enregistrer</button>
-                </div>
-            </form>
         </div>
     </div>
 </div>

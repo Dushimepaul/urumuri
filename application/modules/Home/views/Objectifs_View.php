@@ -1,15 +1,35 @@
 <?php include VIEWPATH.'includes/frontend/Header.php'; ?>
-
-<style type="text/css">
-	
-
-   
-
-
-
-
+<style>
+     /* ================= PAGE HEADER ================= */
+    .page-header {
+        height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+        padding: 130px 0 90px;
+        position: relative;
+        background: linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.65)),
+                    url('https://c.pxhere.com/photos/d6/be/team_teamwork_team_spirit_together_cooperation_community_partnership_cooperate-1403218.jpg!d') center/cover no-repeat;
+    }
+    .flur{
+        position: absolute;
+        inset: 0;
+        backdrop-filter: blur(3px);
+        background: rgba(0, 0, 0, 0.2);
+    }
 
 </style>
+<!-- ================= PAGE HEADER ================= -->
+<section class="page-header text-white text-center">
+    <div class="flur"></div>
+    <div class="container">
+        <h1 class="display-4 fw-bold mb-3 animate-fade-in">Objectifs</h1>
+        <p class="lead opacity-75 fs-5 animate-fade-in" style="animation-delay: 0.2s;">
+            Découvrez les Objectifs d'Urumuri
+        </p>
+    </div>
+</section>
 
 <!-- ================= OBJECTIVES ================= -->
 <section class="py-5 bg-light-teal">

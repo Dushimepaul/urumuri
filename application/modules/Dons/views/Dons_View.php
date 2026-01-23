@@ -19,12 +19,6 @@
                     <a class="btn btn-primary" href="javascript:;" data-bs-toggle="modal" data-bs-target="#newDon">
                         <i class="bx bx-plus"></i> Nouveau Don
                     </a>
-                    <a class="btn btn-success" href="<?= base_url('Dons/exportCSV') ?>">
-                        <i class="bx bx-download"></i> Exporter CSV
-                    </a>
-                    <button class="btn btn-info" id="refreshStats">
-                        <i class="bx bx-refresh"></i> Stats
-                    </button>
                 </div>
             </div>
         </div>
@@ -32,70 +26,7 @@
         <?php if($this->session->flashdata('sms')) echo $this->session->flashdata('sms'); ?>
         <hr/>
 
-        <!-- Statistiques rapides -->
-        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 mb-4" id="statsContainer" style="display: none;">
-            <div class="col">
-                <div class="card radius-10 border-0 border-start border-tiffany border-3">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center">
-                            <div>
-                                <p class="mb-0 text-secondary">Total Dons</p>
-                                <h4 class="my-1" id="totalDons">0</h4>
-                            </div>
-                            <div class="widgets-icons-2 rounded-circle bg-gradient-cosmic text-white ms-auto">
-                                <i class="bx bx-donate-heart"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card radius-10 border-0 border-start border-success border-3">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center">
-                            <div>
-                                <p class="mb-0 text-secondary">Total Financier</p>
-                                <h4 class="my-1" id="totalMontant">0 FBU</h4>
-                            </div>
-                            <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto">
-                                <i class="bx bx-money"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card radius-10 border-0 border-start border-warning border-3">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center">
-                            <div>
-                                <p class="mb-0 text-secondary">En Attente</p>
-                                <h4 class="my-1" id="enAttente">0</h4>
-                            </div>
-                            <div class="widgets-icons-2 rounded-circle bg-gradient-burning text-white ms-auto">
-                                <i class="bx bx-time-five"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card radius-10 border-0 border-start border-info border-3">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center">
-                            <div>
-                                <p class="mb-0 text-secondary">Validés</p>
-                                <h4 class="my-1" id="valides">0</h4>
-                            </div>
-                            <div class="widgets-icons-2 rounded-circle bg-gradient-moonlit text-white ms-auto">
-                                <i class="bx bx-check-circle"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        
 
         <div class="card">
             <div class="card-body">
@@ -161,52 +92,100 @@
                             </tr>
 
                             <!-- Modal Vue détaillée -->
-                            <div class="modal fade" id="view_<?= $value['id'] ?>" tabindex="-1">
-                                <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">Détails du Don #<?= $value['id'] ?></h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <h6>Informations Donateur</h6>
-                                                    <p><strong>Nom:</strong> <?= htmlspecialchars($value['nom_complet']) ?></p>
-                                                    <p><strong>Email:</strong> <?= htmlspecialchars($value['email']) ?></p>
-                                                    <p><strong>Téléphone:</strong> <?= htmlspecialchars($value['telephone']) ?></p>
-                                                    <p><strong>Pays:</strong> <?= htmlspecialchars($value['pays']) ?></p>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <h6>Informations Don</h6>
-                                                    <p><strong>Type:</strong> <?= ucfirst($value['type_don']) ?></p>
-                                                    <p><strong>Statut:</strong> <?= ucfirst(str_replace('_', ' ', $value['statut'])) ?></p>
-                                                    <p><strong>Date création:</strong> <?= date('d/m/Y H:i', strtotime($value['created_at'])) ?></p>
-                                                    <?php if(isset($value['updated_at']) && $value['updated_at'] != $value['created_at']): ?>
-                                                    <p><strong>Dernière modification:</strong> <?= date('d/m/Y H:i', strtotime($value['updated_at'])) ?></p>
-                                                    <?php endif; ?>
-                                                </div>
-                                                <div class="col-12 mt-3">
-                                                    <h6>Détails <?= $value['type_don'] == 'financier' ? 'Financier' : ($value['type_don'] == 'materiel' ? 'Matériel' : 'Compétence') ?></h6>
-                                                    <?php if($value['type_don'] == 'financier'): ?>
-                                                        <p><strong>Montant:</strong> <?= number_format($value['montant'] ?? 0, 0, ',', ' ') ?> FBU</p>
-                                                        <p><strong>Méthode paiement:</strong> <?= $value['methode_paiement_nom'] ?? 'Non spécifié' ?></p>
-                                                        <p><strong>Mensuel:</strong> <?= ($value['is_mensuel'] ?? 0) == 1 ? 'Oui' : 'Non' ?></p>
-                                                    <?php elseif($value['type_don'] == 'materiel'): ?>
-                                                        <p><?= nl2br(htmlspecialchars($value['description_materiel'] ?? 'Aucune description')) ?></p>
-                                                    <?php else: ?>
-                                                        <p><?= nl2br(htmlspecialchars($value['description_contribution'] ?? 'Aucune description')) ?></p>
-                                                    <?php endif; ?>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+<!-- Modal Vue détaillée -->
+<div class="modal fade" id="view_<?= $value['id'] ?>" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <!-- Header -->
+            <div class="modal-header">
+                <h5 class="modal-title">Détails du Don #<?= $value['id'] ?></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+            </div>
 
+            <!-- Body -->
+            <div class="modal-body">
+                <div class="container-fluid">
+
+                    <!-- Informations Donateur -->
+                    <h3 class="text-center p-3 border-bottom">Informations Donateur</h3>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <p><strong>Nom:</strong> <?= htmlspecialchars($value['nom_complet']) ?></p>
+                            <p><strong>Email:</strong> <?= htmlspecialchars($value['email']) ?></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Téléphone:</strong> <?= htmlspecialchars($value['telephone']) ?></p>
+                            <p><strong>Pays:</strong> <?= htmlspecialchars($value['pays']) ?></p>
+                        </div>
+                    </div>
+
+                    <!-- Informations Don -->
+                    
+                    <div class="row mb-3">
+
+
+
+                        <!-- Dons Financiers -->
+                        <div class="col-md-12 py-4">
+                            <h4 class="text-center p-2 border-bottom">Dons Financiers</h4>
+                            <?php 
+                            $financiers = $this->Model->read('dons_financiers',['don_id' => $value['id']]); 
+                            if(!empty($financiers)):
+                                foreach($financiers as $f): ?>
+                                    <p><strong>Montant:</strong> <?= number_format($f['montant'], 0, ',', ' ') ?> FBU</p>
+                                    <p><strong>Mode de paiement:</strong> <?= htmlspecialchars($f['methode_paiement_nom'] ?? 'Non spécifié') ?></p>
+                                    <p><strong>Mensuel:</strong> <?= $f['is_mensuel'] == 1 ? 'Oui' : 'Non' ?></p>
+                                    <hr>
+                                <?php endforeach; 
+                            else: ?>
+                                <p class="text-muted text-center">Aucun don financier</p>
+                            <?php endif; ?>
+                        </div>
+
+
+
+
+                        <!-- Dons Matériels -->
+                        <div class="col-md-12 py-4">
+                            <h4 class="text-center p-2 border-bottom">Dons Matériels</h4>
+                            <?php 
+                            $materiels = $this->Model->read('dons_materiels', ['don_id' => $value['id']]);
+                            if(!empty($materiels)):
+                                foreach($materiels as $m): ?>
+                                    <p><strong>Description:</strong> <?= nl2br(htmlspecialchars($m['description_materiel'])) ?></p>
+                                    <hr>
+                                <?php endforeach;
+                            else: ?>
+                                <p class="text-muted text-center">Aucun don matériel</p>
+                            <?php endif; ?>
+                        </div>
+                        <!-- Dons Compétences -->
+
+                             <div class="col-md-12 py-4">
+                            <h4 class="text-center p-2 border-bottom">Compétences</h4>
+                            <?php 
+                            $competences = $this->Model->read('dons_competences', ['don_id' => $value['id']]);
+                            if(!empty($competences)):
+                                foreach($competences as $c): ?>
+                                    <p><strong>Description:</strong> <?= nl2br(htmlspecialchars($c['description_contribution'])) ?></p>
+                                    <hr>
+                                <?php endforeach;
+                            else: ?>
+                                <p class="text-muted text-center">Aucune compétence</p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
                             <!-- Modal de modification -->
                             <div class="modal fade" id="update_<?= $value['id'] ?>" tabindex="-1" data-bs-backdrop="static">
                                 <div class="modal-dialog modal-lg">
@@ -242,43 +221,6 @@
                                                         <option value="annule" <?= $value['statut']=='annule'?'selected':'' ?>>Annulé</option>
                                                     </select>
                                                 </div>
-                                                
-                                                <div id="update_fields_<?= $value['id'] ?>" class="row g-3 px-0">
-                                                    <div class="col-md-4 field-financier" style="display:<?= $value['type_don']=='financier'?'block':'none' ?>;">
-                                                        <label class="form-label">Montant (FBU) *</label>
-                                                        <input type="number" step="0.01" min="0" class="form-control" name="montant" value="<?= $value['montant'] ?? '' ?>" <?= $value['type_don']=='financier'?'required':'' ?>>
-                                                    </div>
-                                                    
-                                                    <div class="col-md-4 field-financier" style="display:<?= $value['type_don']=='financier'?'block':'none' ?>;">
-                                                        <label class="form-label">Mode de Paiement *</label>
-                                                        <select class="form-select" name="id_mode_payement" <?= $value['type_don']=='financier'?'required':'' ?>>
-                                                            <option value="">-- Sélectionner --</option>
-                                                            <?php foreach($methodes_paiement as $methode): ?>
-                                                            <option value="<?= $methode['id'] ?>" <?= ($value['id_methode_paiement'] ?? '') == $methode['id'] ? 'selected' : '' ?>>
-                                                                <?= htmlspecialchars($methode['nom']) ?>
-                                                            </option>
-                                                            <?php endforeach; ?>
-                                                        </select>
-                                                    </div>
-
-                                                    <div class="col-md-4 field-financier" style="display:<?= $value['type_don']=='financier'?'block':'none' ?>;">
-                                                        <label class="form-label">Récurrence</label>
-                                                        <div class="form-check form-switch" style="padding-top: 8px;">
-                                                            <input class="form-check-input" type="checkbox" name="paiement_recurrent" id="is_mensuel_<?= $value['id'] ?>" value="1" <?= ($value['is_mensuel'] ?? 0) == 1 ? 'checked' : '' ?>>
-                                                            <label class="form-check-label" for="is_mensuel_<?= $value['id'] ?>">Don Mensuel ?</label>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-md-12 field-materiel" style="display:<?= $value['type_don']=='materiel'?'block':'none' ?>;">
-                                                        <label class="form-label">Description Matériel *</label>
-                                                        <textarea class="form-control" name="description_materiel" rows="3" <?= $value['type_don']=='materiel'?'required':'' ?>><?= htmlspecialchars($value['description_materiel'] ?? '') ?></textarea>
-                                                    </div>
-                                                    <div class="col-md-12 field-competence" style="display:<?= $value['type_don']=='competence'?'block':'none' ?>;">
-                                                        <label class="form-label">Description Compétence *</label>
-                                                        <textarea class="form-control" name="description_competence" rows="3" <?= $value['type_don']=='competence'?'required':'' ?>><?= htmlspecialchars($value['description_contribution'] ?? '') ?></textarea>
-                                                    </div>
-                                                </div>
-
                                                 <div class="col-md-6">
                                                     <label class="form-label">Téléphone *</label>
                                                     <input type="text" class="form-control" name="telephone" value="<?= htmlspecialchars($value['telephone']) ?>" required>

@@ -15,7 +15,7 @@
                 </nav>
             </div>
             <div class="ms-auto">
-                <a class="btn btn-outline-primary" href="javascript:;" data-bs-toggle="modal" data-bs-target="#newCompetence">Nouveau</a>
+                <a class="btn btn-outline-primary" href="<?=base_url('Dons')?>">Nouveau</a>
             </div>
         </div>
 
@@ -63,7 +63,7 @@
                                             <h5 class="modal-title">Modifier la contribution</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                         </div>
-                                        <form action="<?=base_url('Dons_Competences/Update')?>" method="POST">
+                                        <form action="<?=base_url('Dons/UpdateCompetences')?>" method="POST">
                                             <input type="hidden" name="id" value="<?=$value['id']?>">
                                             <div class="modal-body row g-3">
                                                 <div class="col-12">
@@ -91,7 +91,7 @@
                             <div class="modal fade" id="delete_<?=$value['id']?>" tabindex="-1">
                                 <div class="modal-dialog">
                                     <div class="modal-content text-center">
-                                        <form action="<?=base_url('Dons_Competences/Delete')?>" method="POST">
+                                        <form action="<?=base_url('Dons/DeleteCompetences')?>" method="POST">
                                             <input type="hidden" name="id" value="<?=$value['id']?>">
                                             <div class="modal-body p-4">
                                                 <i class="bx bx-trash text-danger display-4"></i>

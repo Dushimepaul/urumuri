@@ -3,13 +3,18 @@
 <style>
     /* ================= PAGE HEADER ================= */
     .page-header {
+         height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
         padding: 130px 0 90px;
         background: linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.65)),
                     url('https://images.unsplash.com/photo-1508780709619-79562169bc64') center/cover no-repeat;
     }
 
 
-
+ .bg-light-teal { background-color: var(--light-teal) !important; }
+ 
 .btn-lg {
     transition: all 0.3s ease;
 }
@@ -318,7 +323,7 @@
 
 
 <!-- ================= GALLERIE PRINCIPALE ================= -->
-<section class="py-5">
+<section class="py-5 bg-light-teal bg-white">
     <div class="container">
 
 <!-- ===== TITRE PAGE GALLERY ===== -->

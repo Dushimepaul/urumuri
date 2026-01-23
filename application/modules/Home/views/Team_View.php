@@ -123,6 +123,37 @@
 }
 
 </style>
+<style>
+     /* ================= PAGE HEADER ================= */
+    .page-header {
+        height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+        padding: 130px 0 90px;
+        position: relative;
+        background: linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.65)),
+                    url('https://images.pexels.com/photos/7550439/pexels-photo-7550439.jpeg') center/cover no-repeat;
+    }
+    .flur{
+        position: absolute;
+        inset: 0;
+        backdrop-filter: blur(3px);
+        background: rgba(0, 0, 0, 0.2);
+    }
+
+</style>
+<!-- ================= PAGE HEADER ================= -->
+<section class="page-header text-white text-center">
+    <div class="flur"></div>
+    <div class="container">
+        <h1 class="display-4 fw-bold mb-3 animate-fade-in">Notre Equipe</h1>
+        <p class="lead opacity-75 fs-5 animate-fade-in" style="animation-delay: 0.2s;">
+            Découvrez Les Membres Fondateurs d'Urumuri
+        </p>
+    </div>
+</section>
 
 <!-- ================= TEAM ================= -->
 <section class="py-5">
@@ -193,7 +224,7 @@
 
 
 <!-- ===== CATÉGORIES DE MEMBRES ===== -->
-<section class="py-5">
+<section class="py-5 bg-white">
     <div class="container">
         <h2 class="text-center fw-bold mb-5 display-5">CATEGORIES <span class="text-teal">DES MEMBRES</span></h2>
         

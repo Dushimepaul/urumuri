@@ -15,14 +15,7 @@
                     <small><i class="bx bx-calendar me-1"></i> <?= date('d/m/Y') ?></small>
                 </div>
             </div>
-            <div class="d-flex gap-2">
-                <button type="button" class="btn btn-outline-secondary d-flex align-items-center">
-                    <i class="bx bx-download me-1"></i> Exporter
-                </button>
-                <button type="button" class="btn" style="background-color: var(--vert-bleute); color: white;">
-                    <i class="bx bx-refresh me-1"></i> Actualiser
-                </button>
-            </div>
+            
         </div>
 
         <!-- Alertes et notifications -->
@@ -273,7 +266,7 @@
                     <div class="card-body">
                         <div class="row g-3">
                             <div class="col-md-3">
-                                <a href="<?= base_url('admin/messages') ?>" class="card action-card border-0 text-decoration-none text-center p-4 hover-lift">
+                                <a href="<?=base_url('Contact_us')?>" class="card action-card border-0 text-decoration-none text-center p-4 hover-lift">
                                     <div class="card-body">
                                         <div class="avatar mx-auto mb-3" style="background-color: rgba(6, 44, 84, 0.1); width: 70px; height: 70px; border-radius: 15px; display: flex; align-items: center; justify-content: center;">
                                             <i class="bx bx-envelope fs-3" style="color: var(--bleu-fonce);"></i>
@@ -285,7 +278,7 @@
                             </div>
                             
                             <div class="col-md-3">
-                                <a href="<?= base_url('admin/projects') ?>" class="card action-card border-0 text-decoration-none text-center p-4 hover-lift">
+                                <a href="<?=base_url('Projects')?>" class="card action-card border-0 text-decoration-none text-center p-4 hover-lift">
                                     <div class="card-body">
                                         <div class="avatar mx-auto mb-3" style="background-color: rgba(15, 118, 110, 0.1); width: 70px; height: 70px; border-radius: 15px; display: flex; align-items: center; justify-content: center;">
                                             <i class="bx bx-folder fs-3" style="color: var(--vert);"></i>
@@ -297,7 +290,7 @@
                             </div>
                             
                             <div class="col-md-3">
-                                <a href="<?= base_url('admin/dons') ?>" class="card action-card border-0 text-decoration-none text-center p-4 hover-lift">
+                                <a href="<?=base_url('Dons')?>" class="card action-card border-0 text-decoration-none text-center p-4 hover-lift">
                                     <div class="card-body">
                                         <div class="avatar mx-auto mb-3" style="background-color: rgba(26, 140, 120, 0.1); width: 70px; height: 70px; border-radius: 15px; display: flex; align-items: center; justify-content: center;">
                                             <i class="bx bx-donate-heart fs-3" style="color: var(--vert-bleute);"></i>

@@ -3,16 +3,52 @@
 <style>
        /* ================= PAGE HEADER ================= */
     .page-header {
+        height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
         padding: 130px 0 90px;
+        position: relative;
         background: linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.65)),
                     url('https://images.unsplash.com/photo-1508780709619-79562169bc64') center/cover no-repeat;
     }
 
+
+  /* ================= DEVISE ================= */
+    .devise-banner {
+        height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+        background: linear-gradient(135deg, var(--primary-teal), var(--dark-teal));
+        color: #fff;
+        padding: 60px 0;
+    }
+
+    .devise-banner::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+        background-size: 30px 30px;
+        opacity: 0.3;
+    }
+    .flur{
+        position: absolute;
+        inset: 0;
+        backdrop-filter: blur(3px);
+        background: rgba(0, 0, 0, 0.2);
+    }
     
 </style>
 
 <!-- ================= PAGE HEADER ================= -->
 <section class="page-header text-white text-center">
+    <div class="flur"></div>
     <div class="container">
         <h1 class="display-4 fw-bold mb-3 animate-fade-in">À Propos de Nous</h1>
         <p class="lead opacity-75 fs-5 animate-fade-in" style="animation-delay: 0.2s;">

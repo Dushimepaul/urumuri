@@ -15,10 +15,21 @@ include VIEWPATH.'includes/frontend/Header.php';
 /* ================= PAGE HEADER ================= */
 .page-header {
     padding: 130px 0 90px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: 
         linear-gradient(rgba(0,0,0,.75), rgba(0,0,0,.75)),
         url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32')
         center/cover no-repeat;
+    background-size: cover; 
+    background-position: center; 
+    position: relative;  
+}
+
+.page-contain{
+    z-index: 2;
 }
 
 /* ================= FILTRES GALLERIE ================= */
@@ -277,7 +288,7 @@ include VIEWPATH.'includes/frontend/Header.php';
 
 <!-- ================= PAGE HEADER ================= -->
 <section class="page-header text-white text-center">
-    <div class="container">
+    <div class="container page-contain">
         <h1 class="display-4 fw-bold">Galerie Multimédia</h1>
         <p class="lead opacity-75">Photos, vidéos et documents de nos activités</p>
     </div>

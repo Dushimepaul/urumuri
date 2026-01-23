@@ -11,11 +11,18 @@
 
 /* ===== HERO ===== */
 .contact-hero {
-    padding: 120px 0 80px;
-    background: linear-gradient(rgba(26, 140, 120, 0.9), rgba(20, 108, 92, 0.9)), 
-                url('https://images.unsplash.com/photo-1523966211575-eb4a01e7dd51?q=80&w=1600') center/cover;
-    color: white;
-}
+
+height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+        padding: 130px 0 90px;
+        position: relative;
+        background: linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.65)),
+                    url('https://images.unsplash.com/photo-1523966211575-eb4a01e7dd51?q=80&w=1600') center/cover no-repeat;
+    }
+   
 
 /* ===== CONTACT CARDS ===== */
 .contact-info-card {
@@ -67,10 +74,11 @@
 
 <section class="contact-hero text-center">
     <div class="container">
-        <h1 class="display-4 fw-bold">Contactez-nous</h1>
-        <p class="lead opacity-75">Une question ? Un projet ? Nous sommes à votre écoute.</p>
+        <h1 class="display-4 fw-bold text-white">Contactez-nous</h1>
+        <p class="lead opacity-75 text-white">Nous sommes à votre écoute.</p>
     </div>
 </section>
+
 
 <section class="py-5">
     <div class="container">
