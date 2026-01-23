@@ -86,11 +86,6 @@
                         FAQ
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?=base_url('Home/Galleries')?>">
-                        Galleries
-                    </a>
-                </li>
                 
                 <li class="nav-item">
                     <a class="nav-link" href="<?=base_url('Home/ContactUs')?>">

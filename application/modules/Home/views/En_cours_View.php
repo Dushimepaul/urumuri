@@ -37,7 +37,7 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="card h-100 shadow-sm">
                         <div class="overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=800&q=80" 
+                            <img src="<?= base_url('attachments/projects/'.$project['image']) ?>" 
                                  class="card-img-top" 
                                  alt="<?= htmlspecialchars($project['title']) ?>">
                         </div>
@@ -61,7 +61,7 @@
                             </p>
                         </div>
                         <div class="card-footer bg-white border-0 p-4 pt-0">
-                            <a href="#" class="btn btn-outline-primary btn-custom btn-sm w-100">Découvrir le projet</a>
+                            <a href="<?= base_url('Home/Home/detail_progects/' . $project['id']) ?>" class="btn btn-outline-primary btn-custom btn-sm w-100">Découvrir le projet</a>
                         </div>
                     </div>
                 </div>

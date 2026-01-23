@@ -1,12 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-/**
- *@author:    niyodon paci
- * Email:     niyodonpaci@gmail.com
- * Date :     Le 26/08/2025
- * Gitgub:    https://github.com/niyodon3564
-*/
+
 class Model extends CI_Model{
 
 
@@ -293,6 +288,16 @@ class Model extends CI_Model{
     }
 
 
+     
+function getYoutubeId($url)
+{
+    preg_match(
+        '%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i',
+        $url,
+        $match
+    );
+    return $match[1] ?? null;
+}
 
 
 

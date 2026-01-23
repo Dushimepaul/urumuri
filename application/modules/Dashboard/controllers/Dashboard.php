@@ -79,11 +79,7 @@ class Dashboard extends My_Controller
         $dons_non_remis = $this->Model->count('dons', ['statut' => 'en_attente']);
         
         // Statistiques supplémentaires (si vous voulez les utiliser)
-        $events_active = $this->Model->count('events', ['IsActive' => 1]);
-        $testimonies_approved = $this->Model->count('testimonies', ['status' => 'approved']);
-        $testimonies_pending = $this->Model->count('testimonies', ['status' => 'pending']);
         $newsletter_count = $this->Model->count('newsletter');
-        $volunteers_count = $this->Model->count('volunteers');
         $gallery_count = $this->Model->count('gallery');
         
         // Préparer les données pour la vue
@@ -109,11 +105,7 @@ class Dashboard extends My_Controller
             'members_sympathisants' => $members_sympathisants,
             
             // Autres statistiques (optionnelles)
-            'events_active' => $events_active,
-            'testimonies_approved' => $testimonies_approved,
-            'testimonies_pending' => $testimonies_pending,
             'newsletter_count' => $newsletter_count,
-            'volunteers_count' => $volunteers_count,
             'gallery_count' => $gallery_count,
         ];
         

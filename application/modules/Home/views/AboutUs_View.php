@@ -1,7 +1,3 @@
-
-
-
-
 <?php include VIEWPATH.'includes/frontend/Header.php'; ?>
 
 <style>
@@ -20,7 +16,7 @@
     <div class="container">
         <h1 class="display-4 fw-bold mb-3 animate-fade-in">À Propos de Nous</h1>
         <p class="lead opacity-75 fs-5 animate-fade-in" style="animation-delay: 0.2s;">
-            Découvrez l'histoire, la vision et l'engagement d'Urumuri
+            Découvrez la Vision et la Mission d'Urumuri
         </p>
     </div>
 </section>

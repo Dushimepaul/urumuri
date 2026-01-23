@@ -42,12 +42,6 @@ class Home extends My_Controller
 
     $data['objectifs']=$this->Model->read('objectifs',null,'id_objectif');
 
-    $data['news_media']=$this->Model->read('news_media',null,'id_news_media');
-    $data['events'] = $this->Model->read('events', null, 'id');
-
-    
-        $data['testimony']=$this->Model->read('testimonies',null,'IdTestimony');
-
     // Charger la vue
     $this->load->view('Home_View', $data);
 }
@@ -56,10 +50,6 @@ class Home extends My_Controller
     public function AboutUs(){
         $about_us_data = $this->Model->read('about_us', null, 'id_about_us', 'DESC', 1);
         $data['about_us'] = !empty($about_us_data) ? $about_us_data[0] : null;
-
-        
-
-        $data['historique']=$this->Model->read('historique',['statut' => 1],'ordre_affichage','asc');
 
         
 
@@ -84,6 +74,7 @@ class Home extends My_Controller
         
         $data['totalprojectrealise']=$this->Model->count('projects',['status'=>'ongoing']);
         $data['totalprojectencours']=$this->Model->count('projects',['status'=>'completed']);
+        $data['galleries'] = $this->Model->read('gallery', null, 'IdGallery','ASC', 3);
 
         $data['projects']=$this->Model->read('projects',['status'=>'completed'],'id');
 
@@ -100,29 +91,21 @@ class Home extends My_Controller
         $this->load->view('En_cours_View',$data);
     }
 
-    public function Actualite(){
-        $data['Actualite']=$this->Model->read('news_media',null,'id_news_media');
-        $this->load->view('Actualite_View',$data);
+
+
+    public function detail_progects($id)
+{
+    $data['projects'] = $this->Model->read(
+        'projects',
+        ['id' => $id],
+        'id'
+    );
+
+    if (empty($data['projects'])) {
+        show_404(); // événement introuvable
     }
 
-
-
-
-    public function Events() {
-
-    $today = date('Y-m-d');
-
-    // Événements à venir : date_debut >= aujourd'hui
-    $data['upcoming_events'] = $this->Model->read('events',['IsActive' => 1, 'date_debut >=' => $today],'date_debut','ASC'
-    );
-
-    // Événements passés : date_fin < aujourd'hui
-    $data['past_events'] = $this->Model->read('events',['IsActive' => 1, 'date_fin <' => $today],
-        'date_debut','DESC'
-    );
-
-    // Charger la vue
-    $this->load->view('Events_View', $data);
+    $this->load->view('Detail_project', $data);
 }
 
 
@@ -156,4 +139,8 @@ class Home extends My_Controller
         $data['faq']=$this->Model->read('faq',['Status' => 1],'IdFaq','asc');
         $this->load->view('Faq_View',$data);
     }
+
+
+
+
 }

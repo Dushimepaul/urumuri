@@ -1,83 +1,107 @@
-<?php
-include VIEWPATH.'media/Header.php';
-include VIEWPATH.'media/navbar.php';
+<?php include VIEWPATH.'includes/frontend/Header.php'; 
 
 /* Sécurité : premier résultat */
-$event = $events[0];
+$project = $projects[0];
 ?>
 
 <!-- HERO -->
-<div class="hero-bg" style="background-image: url('<?= base_url('assets/images/good.png') ?>')">
-    <div class="hero-body text-center text-white">
-        <h1 class="hero-tete">Événement</h1>
-        <p class="hero-descr">Accueil / Événement</p>
-    </div>
-</div>
+<section class="hero-bg position-relative"
+    style="background-image: url('<?= base_url('https://images.unsplash.com/photo-1508780709619-79562169bc64') ?>');
+           background-size: cover;
+           background-position: center;
+           height: 320px;">
+    
+    <div class="position-absolute top-0 start-0 w-100 h-100"
+         style="background: rgba(0,0,0,0.6);"></div>
 
-<!-- CONTENU -->
-<div class="container my-5">
-    <div class="row g-5">
-
-        <!-- ARTICLE -->
-        <div class="col-lg-8">
-            <article class="bg-white p-4 rounded shadow-sm border">
-
-                <header class="mb-4">
-                    <h1 class="fw-bold mb-2">
-                        <?= htmlspecialchars($event['titre'], ENT_QUOTES, 'UTF-8') ?>
-                    </h1>
-
-                    <p class="text-muted small">
-                        <i class="bi bi-calendar-event"></i>
-                        Du <?= date('d M Y', strtotime($event['date_debut'])) ?>
-                        au <?= date('d M Y', strtotime($event['date_fin'])) ?>
-                        &nbsp;•&nbsp; <strong><?= htmlspecialchars($event['lieu']) ?></strong>
-                    </p>
-                </header>
-
-                <!-- IMAGE -->
-                <?php if (!empty($event['image'])): ?>
-                  <div style="height: 500px; overflow: hidden; width: 100%;" class="rounded mb-4">
-                    <img
-                        src="<?= base_url('attachments/events/'.$event['image']) ?>"
-                        class="img-fluid rounded mb-4 w-100 h-100"
-                        alt="<?= htmlspecialchars($event['titre']) ?>"
-                    >
-                  </div>
-                <?php endif; ?>
-
-                <!-- CONTENU CKEDITOR -->
-                <section class="post-content">
-                    <?= $event['description']; ?>
-                </section>
-
-            </article>
-        </div>
-
-        <!-- SIDEBAR -->
-        <div class="col-lg-4">
-            <div class="sticky-top" style="top:100px">
-
-                <div class="p-4 mb-4 bg-white border rounded shadow-sm">
-                    <h5 class="fw-bold">Informations</h5>
-                    <p class="mb-1"><strong>Mois :</strong> <?= $event['mois']; ?></p>
-                    <p class="mb-1"><strong>Année :</strong> <?= $event['annee']; ?></p>
-                    <p class="mb-0">
-                        <strong>Type :</strong>
-                        <?= $event['est_en_ligne'] ? 'En ligne' : 'Présentiel'; ?>
-                    </p>
-                </div>
-
-                <div class="p-4 bg-white border rounded shadow-sm">
-                    <h5 class="fw-bold">Contact</h5>
-                    <p class="small mb-1"><strong>Tél :</strong> +257 68 86 39 45</p>
-                    <p class="small mb-0"><strong>Email :</strong> contact@abelab.com</p>
-                </div>
-
+    <div class="container h-100 position-relative">
+        <div class="d-flex h-100 align-items-center justify-content-center text-center text-white">
+            <div>
+                <h1 class="fw-bold mb-2">Détails du projet</h1>
+                <p class="mb-0 opacity-75">Accueil / Projets / Détails</p>
             </div>
         </div>
-
     </div>
-</div>
+</section>
 
-<?php include VIEWPATH.'media/Footer.php'; ?>
+<!-- CONTENU -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <!-- ARTICLE -->
+            <div class="col-lg-9">
+                <article class="bg-white rounded-4 shadow-sm overflow-hidden">
+
+                    <!-- IMAGE -->
+                    <?php if (!empty($project['image'])): ?>
+                        <div style="height: 420px; overflow: hidden;">
+                            <img src="<?= base_url('attachments/projects/'.$project['image']) ?>"
+                                 alt="<?= htmlspecialchars($project['title']) ?>"
+                                 class="w-100 h-100"
+                                 style="object-fit: cover;">
+                        </div>
+                    <?php endif; ?>
+
+                    <!-- CONTENU -->
+                    <div class="p-4 p-md-5">
+
+                        <!-- TITRE -->
+                        <h2 class="fw-bold mb-3">
+                            <?= htmlspecialchars($project['title'], ENT_QUOTES, 'UTF-8') ?>
+                        </h2>
+
+                        <!-- META -->
+                        <div class="d-flex flex-wrap gap-3 text-muted small mb-4">
+                            <span>
+                                <i class="bi bi-calendar-event me-1"></i>
+                                Du <?= date('d M Y', strtotime($project['date_debut'])) ?>
+                                au <?= date('d M Y', strtotime($project['date_fin'])) ?>
+                            </span>
+
+                            <?php if (!empty($project['status'])): ?>
+                                <span class="badge bg-primary bg-opacity-10 text-primary">
+                                    <?= htmlspecialchars($project['status']) ?>
+                                </span>
+                            <?php endif; ?>
+                        </div>
+
+                        <hr>
+
+                        <!-- DESCRIPTION -->
+                        <div class="post-content mt-4"
+                             style="line-height: 1.8; font-size: 1.05rem;">
+                            <?= $project['description']; ?>
+                        </div>
+
+                    </div>
+                </article>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<?php include VIEWPATH.'includes/frontend/Footer.php'; ?>
+
+<style>
+
+.post-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+
+.post-content p {
+    margin-bottom: 1rem;
+}
+
+.post-content h2,
+.post-content h3 {
+    margin-top: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+
+</style>

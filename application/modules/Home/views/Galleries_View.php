@@ -118,6 +118,7 @@ include VIEWPATH.'includes/frontend/Header.php';
     line-height: 1.4;
 }
 
+
 /* ================= LIGHTBOX ================= */
 .lightbox-modal .modal-content {
     background: transparent;
@@ -182,6 +183,24 @@ include VIEWPATH.'includes/frontend/Header.php';
 }
 
 /* ================= VIDÉOS ================= */
+
+.gallery-item {
+    display: block;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.gallery-item .fab.fa-youtube {
+    text-shadow: 0 5px 15px rgba(0,0,0,0.6);
+}
+
 .video-thumbnail {
     position: relative;
     border-radius: 12px;
@@ -198,9 +217,12 @@ include VIEWPATH.'includes/frontend/Header.php';
     background: rgba(0,0,0,.3);
     transition: background 0.3s ease;
 }
+
+
 .video-thumbnail:hover::before {
     background: rgba(0,0,0,.5);
 }
+
 .play-btn {
     position: absolute;
     top: 50%;
@@ -349,33 +371,55 @@ include VIEWPATH.'includes/frontend/Header.php';
                         </div>
 
                     <?php else: ?>
-                        <!-- CARD LINK (Youtube/autres) -->
-                        <a href="<?= htmlspecialchars($gallery['Media']) ?>" 
-                           class="gallery-item link-item"
-                           data-type="link"
-                           target="_blank"
-                           rel="noopener noreferrer">
-                            
-                            <div class="link-icon">
-                                <i class="fab fa-youtube"></i>
-                            </div>
-                            
-                            <span class="gallery-type link">Lien</span>
-                            
-                            <div class="text-center p-4">
-                                <h5 class="fw-bold mb-2">
-                                    <?= !empty($gallery['Description']) ? htmlspecialchars(substr($gallery['Description'], 0, 50)) . '...' : 'Lien externe' ?>
-                                </h5>
-                                <p class="small mb-0 opacity-75">
-                                    <i class="far fa-calendar-alt me-1"></i>
-                                    <?= date('d/m/Y', strtotime($gallery['Created_at'])) ?>
-                                </p>
-                                <p class="small mt-2">
-                                    <i class="fas fa-external-link-alt me-1"></i>
-                                    Cliquer pour ouvrir
-                                </p>
-                            </div>
-                        </a>
+
+                    <?php 
+                  $youtubeId = $this->Model->getYoutubeId($gallery['Media']);
+                  $thumbnail = $youtubeId 
+                  ? "https://img.youtube.com/vi/$youtubeId/maxresdefault.jpg"
+                  : base_url('assets/images/video-placeholder.jpg');
+                    ?>
+
+<!-- CARD LINK (Youtube/autres) -->
+<a href="<?= htmlspecialchars($gallery['Media']) ?>" 
+   class="gallery-item link-item position-relative"
+   data-type="link"
+   target="_blank"
+   rel="noopener noreferrer">
+
+    <!-- THUMBNAIL -->
+    <div class="ratio ratio-16x9 overflow-hidden rounded-top">
+        <img src="<?= $thumbnail ?>"
+             alt="Miniature vidéo"
+             class="w-100 h-100"
+             style="object-fit: cover;">
+    </div>
+
+    <!-- ICON PLAY -->
+    <div class="position-absolute top-50 start-50 translate-middle text-white"
+         style="font-size: 3rem;">
+        <i class="fab fa-youtube"></i>
+    </div>
+
+    <span class="gallery-type link">Youtube</span>
+
+    <div class="text-center p-4">
+        <h5 class="fw-bold mb-2">
+            <?= !empty($gallery['Description']) 
+                ? htmlspecialchars(substr($gallery['Description'], 0, 50)) . '...' 
+                : 'Vidéo YouTube' ?>
+        </h5>
+
+        <p class="small mb-0 opacity-75">
+            <i class="far fa-calendar-alt me-1"></i>
+            <?= date('d/m/Y', strtotime($gallery['Created_at'])) ?>
+        </p>
+
+        <p class="small mt-2 text-danger">
+            <i class="fas fa-play me-1"></i>
+            Lire la vidéo
+        </p>
+    </div>
+</a>
                     <?php endif; ?>
                 <?php endforeach; ?>
             </div>
@@ -689,3 +733,23 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <?php include VIEWPATH.'includes/frontend/Footer.php'; ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
