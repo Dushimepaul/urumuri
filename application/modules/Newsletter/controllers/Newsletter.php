@@ -9,7 +9,7 @@ class Newsletter extends MY_Controller {
         if ($this->session->userdata('logged_in') !== TRUE) {
          redirect('Admin');
     }
-
+}
     // Afficher la liste des emails inscrits
     public function index()
     {

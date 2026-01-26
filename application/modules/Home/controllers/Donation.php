@@ -62,7 +62,7 @@ class Donation extends MY_Controller {
             <div style='font-family: Arial, sans-serif; text-align: center; background-color: #f8f9fa; padding: 20px;'>
                         <img src='$logo_url' alt='URUMURI_ICSB Logo' style='max-height: 60px; height: auto; margin-bottom: 20px;'>
                         <p style='font-size: 16px; color: #333;'>Bonjour $nom,</p>
-                        <p style='font-size: 16px; color: #333;'>Merci pour votre don financier de $montant \$.<br>Votre soutien nous est précieux !</p>
+                        <p style='font-size: 16px; color: #333;'>Merci pour votre don financier de $montant .<br>Votre soutien nous est précieux !</p>
                         <p style='font-size: 14px; color: #777; margin-top: 20px;'>&copy; " . date('Y') . " URUMURI ICSB</p>
                    </div>";
                    

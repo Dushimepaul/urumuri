@@ -10,6 +10,7 @@ class Carousel extends MY_Controller {
          redirect('Admin');
     }
 
+    }
     
 	public function index()
 	{

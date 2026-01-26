@@ -1,11 +1,10 @@
-<?php include VIEWPATH.'includes/backend/Header.php'; ?>
-<?php include VIEWPATH.'includes/backend/Sidebar.php'; ?>
-<?php include VIEWPATH.'includes/backend/Topheader.php'; ?>
+<?php include VIEWPATH . 'includes/backend/Header.php'; ?>
+<?php include VIEWPATH . 'includes/backend/Sidebar.php'; ?>
+<?php include VIEWPATH . 'includes/backend/Topheader.php'; ?>
 
 <div class="page-wrapper">
     <div class="page-content" style="--jaune: #FFD000; --orange: #FF8C00; --vert: #0F766E; --bleu-fonce: #062C54; --vert-bleute: #1a8c78;">
 
-        <!-- Breadcrumb amélioré -->
         <div class="page-breadcrumb d-flex align-items-center justify-content-between mb-4">
             <div class="d-flex align-items-center">
                 <h4 class="mb-0 me-2" style="color: var(--bleu-fonce); font-weight: 600;">
@@ -15,18 +14,16 @@
                     <small><i class="bx bx-calendar me-1"></i> <?= date('d/m/Y') ?></small>
                 </div>
             </div>
-            
         </div>
 
-        <!-- Alertes et notifications -->
         <div class="row mb-4">
             <div class="col-12">
-                <div class="alert alert-light border-start border-5 border-warning d-flex align-items-center justify-content-between" role="alert">
+                <div class="alert alert-light border-start border-5 border-warning d-flex align-items-center justify-content-between shadow-sm" role="alert">
                     <div class="d-flex align-items-center">
                         <i class="bx bx-bell text-warning fs-4 me-3"></i>
                         <div>
                             <h6 class="alert-heading mb-0">Bienvenue sur votre tableau de bord</h6>
-                            <small class="text-muted">Vous avez <?= $contact_count ?? 0 ?> nouveaux messages et <?= $projects_in_progress ?? 0 ?> projets en cours</small>
+                            <small class="text-muted">Vous avez <?= $message_non_lus ?? 0 ?> nouveaux messages et <?= $projects_in_progress ?? 0 ?> projets en cours</small>
                         </div>
                     </div>
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
@@ -34,16 +31,34 @@
             </div>
         </div>
 
-        <!-- Statistiques principales -->
         <div class="row g-3 mb-4">
+
             <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="card border-0 shadow-sm hover-lift" style="border-top: 4px solid var(--bleu-fonce);">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h6 class="text-muted mb-2 ">Nouveaux Messages</h6>
+                                <h2 class="mb-0" style="color: var(--bleu-fonce); font-weight: 700;"><?= $message_non_lus ?? 0 ?></h2>
+                                <small class="text-success"><i class="bx bx-up-arrow-alt"></i> Actifs</small>
+                            </div>
+                            <div class="avatar" style="background-color: rgba(6, 44, 84, 0.1); width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 12px;">
+                                <i class="bx bx-envelope fs-3" style="color: var(--bleu-fonce);"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+             <div class="col-xl-3 col-lg-4 col-md-6">
                 <div class="card border-0 shadow-sm hover-lift" style="border-top: 4px solid var(--bleu-fonce);">
                     <div class="card-body p-4">
                         <div class="d-flex justify-content-between align-items-start">
                             <div>
                                 <h6 class="text-muted mb-2">Messages reçus</h6>
                                 <h2 class="mb-0" style="color: var(--bleu-fonce); font-weight: 700;"><?= $contact_count ?? 0 ?></h2>
-                                <small class="text-success"><i class="bx bx-up-arrow-alt"></i> +12% ce mois</small>
+                                <small class="text-success"><i class="bx bx-up-arrow-alt"></i> Actifs</small>
                             </div>
                             <div class="avatar" style="background-color: rgba(6, 44, 84, 0.1); width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 12px;">
                                 <i class="bx bx-envelope fs-3" style="color: var(--bleu-fonce);"></i>
@@ -60,7 +75,7 @@
                             <div>
                                 <h6 class="text-muted mb-2">Projets réalisés</h6>
                                 <h2 class="mb-0" style="color: var(--vert); font-weight: 700;"><?= $projects_completed ?? 0 ?></h2>
-                                <small class="text-success"><i class="bx bx-up-arrow-alt"></i> +8% ce mois</small>
+                                <small class="text-success"><i class="bx bx-check-circle"></i> Terminés</small>
                             </div>
                             <div class="avatar" style="background-color: rgba(15, 118, 110, 0.1); width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 12px;">
                                 <i class="bx bx-check-circle fs-3" style="color: var(--vert);"></i>
@@ -86,167 +101,103 @@
                     </div>
                 </div>
             </div>
+         </div>
+           
 
-            <div class="col-xl-3 col-lg-4 col-md-6">
-                <div class="card border-0 shadow-sm hover-lift" style="border-top: 4px solid var(--vert-bleute);">
-                    <div class="card-body p-4">
-                        <div class="d-flex justify-content-between align-items-start">
-                            <div>
-                                <h6 class="text-muted mb-2">Total membres</h6>
-                                <h2 class="mb-0" style="color: var(--vert-bleute); font-weight: 700;"><?= $members_total ?? 0 ?></h2>
-                                <small class="text-success"><i class="bx bx-up-arrow-alt"></i> +5% ce mois</small>
-                            </div>
-                            <div class="avatar" style="background-color: rgba(26, 140, 120, 0.1); width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 12px;">
-                                <i class="bx bx-group fs-3" style="color: var(--vert-bleute);"></i>
-                            </div>
-                        </div>
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body text-center">
+                        <h6 class="text-muted mb-2"><i class="bx bx-user me-2"></i>Visiteurs Uniques (Aujourd'hui)</h6>
+                        <h2 class="mb-0" style="color: var(--bleu-fonce); font-weight: 700;"><?= $today_visitors ?? 0 ?></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body text-center">
+                        <h6 class="text-muted mb-2"><i class="bx bx-chart me-2"></i>Total Visiteurs Uniques</h6>
+                        <h2 class="mb-0" style="color: var(--vert-bleute); font-weight: 700;"><?= $total_visitors ?? 0 ?></h2>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Section Dons -->
         <div class="row g-3 mb-4">
             <div class="col-lg-8">
-                <div class="card border-0 shadow-sm">
+                <div class="card border-0 shadow-sm h-100">
                     <div class="card-header bg-transparent border-0 d-flex justify-content-between align-items-center py-3">
                         <h5 class="mb-0" style="color: var(--bleu-fonce);">
                             <i class="bx bx-gift me-2"></i>Statistiques des dons
                         </h5>
-                        <select class="form-select form-select-sm w-auto">
-                            <option selected>Ce mois</option>
-                            <option>Ce trimestre</option>
-                            <option>Cette année</option>
-                        </select>
                     </div>
                     <div class="card-body">
                         <div class="row g-3">
                             <div class="col-md-4">
-                                <div class="d-flex align-items-center p-3 rounded" style="background-color: rgba(26, 140, 120, 0.05);">
-                                    <div class="me-3">
-                                        <div class="rounded-circle p-3" style="background-color: rgba(26, 140, 120, 0.1);">
-                                            <i class="bx bx-wallet fs-4" style="color: var(--vert-bleute);"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <h6 class="text-muted mb-1">Dons financiers</h6>
-                                        <h4 class="mb-0" style="color: var(--vert-bleute);"><?= $dons_financiers ?? 0 ?></h4>
-                                        <small class="text-success">+15%</small>
-                                    </div>
+                                <div class="text-center p-3 rounded" style="background-color: rgba(26, 140, 120, 0.05);">
+                                    <h6 class="text-muted small mb-1">Financiers</h6>
+                                    <h4 class="mb-0" style="color: var(--vert-bleute);"><?= $dons_financiers ?? 0 ?></h4>
                                 </div>
                             </div>
-                            
                             <div class="col-md-4">
-                                <div class="d-flex align-items-center p-3 rounded" style="background-color: rgba(255, 140, 0, 0.05);">
-                                    <div class="me-3">
-                                        <div class="rounded-circle p-3" style="background-color: rgba(255, 140, 0, 0.1);">
-                                            <i class="bx bx-package fs-4" style="color: var(--orange);"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <h6 class="text-muted mb-1">Dons matériels</h6>
-                                        <h4 class="mb-0" style="color: var(--orange);"><?= $dons_materiels ?? 0 ?></h4>
-                                        <small class="text-warning">+8%</small>
-                                    </div>
+                                <div class="text-center p-3 rounded" style="background-color: rgba(255, 140, 0, 0.05);">
+                                    <h6 class="text-muted small mb-1">Matériels</h6>
+                                    <h4 class="mb-0" style="color: var(--orange);"><?= $dons_materiels ?? 0 ?></h4>
                                 </div>
                             </div>
-                            
                             <div class="col-md-4">
-                                <div class="d-flex align-items-center p-3 rounded" style="background-color: rgba(6, 44, 84, 0.05);">
-                                    <div class="me-3">
-                                        <div class="rounded-circle p-3" style="background-color: rgba(6, 44, 84, 0.1);">
-                                            <i class="bx bx-book-open fs-4" style="color: var(--bleu-fonce);"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <h6 class="text-muted mb-1">Compétences</h6>
-                                        <h4 class="mb-0" style="color: var(--bleu-fonce);"><?= $competences ?? 0 ?></h4>
-                                        <small class="text-info">+12%</small>
-                                    </div>
+                                <div class="text-center p-3 rounded" style="background-color: rgba(6, 44, 84, 0.05);">
+                                    <h6 class="text-muted small mb-1">Compétences</h6>
+                                    <h4 class="mb-0" style="color: var(--bleu-fonce);"><?= $competences ?? 0 ?></h4>
                                 </div>
                             </div>
                         </div>
                         
-                        <!-- Graphique simple -->
                         <div class="mt-4">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h6 class="mb-0">Évolution des dons</h6>
-                                <div class="text-muted">
-                                    <small>Réalisé: <span class="text-success"><?= $dons_remis ?? 0 ?></span> | 
-                                    En attente: <span class="text-warning"><?= $dons_non_remis ?? 0 ?></span></small>
-                                </div>
+                            <?php 
+                                $percent_remis = ($dons_total > 0) ? round(($dons_remis / $dons_total) * 100) : 0;
+                            ?>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h6 class="mb-0 small">Progression des dons remis</h6>
+                                <span class="badge bg-success"><?= $dons_remis ?? 0 ?> remis (<?= $percent_remis ?>%)</span>
                             </div>
-                            <div class="progress" style="height: 8px;">
-                                <div class="progress-bar" style="width: 75%; background-color: var(--vert-bleute);"></div>
+                            <div class="progress" style="height: 10px;">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <?= $percent_remis ?>%; background-color: var(--vert-bleute);"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Section membres -->
             <div class="col-lg-4">
-                <div class="card border-0 shadow-sm">
-                    <div class="card-header bg-transparent border-0 py-3">
-                        <h5 class="mb-0" style="color: var(--bleu-fonce);">
-                            <i class="bx bx-user-circle me-2"></i>Répartition des membres
-                        </h5>
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-header bg-transparent border-0 py-3 text-center">
+                        <h5 class="mb-0" style="color: var(--bleu-fonce);">Répartition Membres</h5>
                     </div>
-                    <div class="card-body">
-                        <div class="mb-4">
-                            <div class="d-flex align-items-center mb-3">
-                                <div class="me-3">
-                                    <div class="rounded-circle p-2" style="background-color: var(--bleu-fonce);">
-                                        <i class="bx bx-star text-white"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h6 class="mb-0">Fondateurs</h6>
-                                    <small class="text-muted"><?= $members_fondateurs ?? 0 ?> membres</small>
-                                </div>
-                                <div class="badge" style="background-color: var(--bleu-fonce); color: white;">
-                                    <?= $members_fondateurs && $members_total ? round(($members_fondateurs/$members_total)*100, 1) : 0 ?>%
-                                </div>
-                            </div>
-                            
-                            <div class="d-flex align-items-center mb-3">
-                                <div class="me-3">
-                                    <div class="rounded-circle p-2" style="background-color: var(--orange);">
-                                        <i class="bx bx-user-plus text-white"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h6 class="mb-0">Adhérents</h6>
-                                    <small class="text-muted"><?= $members_adherants ?? 0 ?> membres</small>
-                                </div>
-                                <div class="badge" style="background-color: var(--orange); color: white;">
-                                    <?= $members_adherants && $members_total ? round(($members_adherants/$members_total)*100, 1) : 0 ?>%
-                                </div>
-                            </div>
-                            
-                            <div class="d-flex align-items-center">
-                                <div class="me-3">
-                                    <div class="rounded-circle p-2" style="background-color: var(--jaune);">
-                                        <i class="bx bx-heart text-white"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h6 class="mb-0">Sympathisants</h6>
-                                    <small class="text-muted"><?= $members_sympathisants ?? 0 ?> membres</small>
-                                </div>
-                                <div class="badge" style="background-color: var(--jaune); color: black;">
-                                    <?= $members_sympathisants && $members_total ? round(($members_sympathisants/$members_total)*100, 1) : 0 ?>%
-                                </div>
+                    <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                        <div class="position-relative mb-3" style="width: 150px; height: 150px;">
+                            <canvas id="memberChart"></canvas>
+                            <div class="position-absolute top-50 start-50 translate-middle text-center">
+                                <h4 class="mb-0"><?= $members_total ?? 0 ?></h4>
+                                <small class="text-muted" style="font-size: 10px;">TOTAL</small>
                             </div>
                         </div>
-                        
-                        <div class="text-center mt-4">
-                            <div class="position-relative d-inline-block">
-                                <canvas id="memberChart" width="120" height="120"></canvas>
-                                <div class="position-absolute top-50 start-50 translate-middle">
-                                    <h4 class="mb-0"><?= $members_total ?? 0 ?></h4>
-                                    <small class="text-muted">Total</small>
-                                </div>
+                        <div class="w-100">
+                            <div class="d-flex justify-content-between small mb-1">
+                                <span><i class="bx bxs-circle me-1" style="color: var(--bleu-fonce);"></i> Fondateurs</span>
+                                <strong><?= $members_fondateurs ?? 0 ?></strong>
+                            </div>
+                            <div class="d-flex justify-content-between small mb-1">
+                                <span><i class="bx bxs-circle me-1" style="color: var(--orange);"></i> Adhérents</span>
+                                <strong><?= $members_adherants ?? 0 ?></strong>
+                            </div>
+                            <div class="d-flex justify-content-between small mb-1">
+                                <span><i class="bx bxs-circle me-1" style="color: var(--vert-bleute);"></i> Membres d'honneur</span>
+                                <strong><?= $members_honneur ?? 0 ?></strong>
+                            </div>
+                            <div class="d-flex justify-content-between small">
+                                <span><i class="bx bxs-circle me-1" style="color: var(--jaune);"></i> Sympathisants</span>
+                                <strong><?= $members_sympathisants ?? 0 ?></strong>
                             </div>
                         </div>
                     </div>
@@ -254,62 +205,47 @@
             </div>
         </div>
 
-        <!-- Quick Actions -->
+        <div class="row mb-4">
+            <div class="col-lg-12">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-transparent border-0 py-3">
+                        <h5 class="mb-0" style="color: var(--bleu-fonce);">
+                            <i class="bx bx-globe me-2"></i>Visiteurs par pays
+                        </h5>
+                    </div>
+                    <div class="card-body" style="position: relative; height: 350px;">
+                        <canvas id="countryChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row g-3">
             <div class="col-12">
                 <div class="card border-0 shadow-sm">
                     <div class="card-header bg-transparent border-0 py-3">
-                        <h5 class="mb-0" style="color: var(--bleu-fonce);">
-                            <i class="bx bx-rocket me-2"></i>Actions rapides
-                        </h5>
+                        <h5 class="mb-0" style="color: var(--bleu-fonce);"><i class="bx bx-rocket me-2"></i>Actions rapides</h5>
                     </div>
                     <div class="card-body">
-                        <div class="row g-3">
-                            <div class="col-md-3">
-                                <a href="<?=base_url('Contact_us')?>" class="card action-card border-0 text-decoration-none text-center p-4 hover-lift">
-                                    <div class="card-body">
-                                        <div class="avatar mx-auto mb-3" style="background-color: rgba(6, 44, 84, 0.1); width: 70px; height: 70px; border-radius: 15px; display: flex; align-items: center; justify-content: center;">
-                                            <i class="bx bx-envelope fs-3" style="color: var(--bleu-fonce);"></i>
-                                        </div>
-                                        <h6 class="mb-0">Voir les messages</h6>
-                                        <small class="text-muted"><?= $contact_count ?? 0 ?> non lus</small>
-                                    </div>
+                        <div class="row g-3 text-center">
+                            <div class="col-6 col-md-3">
+                                <a href="<?= base_url('Contact_us') ?>" class="btn btn-outline-primary border-0 shadow-sm p-3 w-100 hover-lift">
+                                    <i class="bx bx-envelope fs-2 d-block mb-2"></i> Messages
                                 </a>
                             </div>
-                            
-                            <div class="col-md-3">
-                                <a href="<?=base_url('Projects')?>" class="card action-card border-0 text-decoration-none text-center p-4 hover-lift">
-                                    <div class="card-body">
-                                        <div class="avatar mx-auto mb-3" style="background-color: rgba(15, 118, 110, 0.1); width: 70px; height: 70px; border-radius: 15px; display: flex; align-items: center; justify-content: center;">
-                                            <i class="bx bx-folder fs-3" style="color: var(--vert);"></i>
-                                        </div>
-                                        <h6 class="mb-0">Gérer projets</h6>
-                                        <small class="text-muted"><?= $projects_in_progress ?? 0 ?> en cours</small>
-                                    </div>
+                            <div class="col-6 col-md-3">
+                                <a href="<?= base_url('Projects') ?>" class="btn btn-outline-success border-0 shadow-sm p-3 w-100 hover-lift">
+                                    <i class="bx bx-folder fs-2 d-block mb-2"></i> Projets
                                 </a>
                             </div>
-                            
-                            <div class="col-md-3">
-                                <a href="<?=base_url('Dons')?>" class="card action-card border-0 text-decoration-none text-center p-4 hover-lift">
-                                    <div class="card-body">
-                                        <div class="avatar mx-auto mb-3" style="background-color: rgba(26, 140, 120, 0.1); width: 70px; height: 70px; border-radius: 15px; display: flex; align-items: center; justify-content: center;">
-                                            <i class="bx bx-donate-heart fs-3" style="color: var(--vert-bleute);"></i>
-                                        </div>
-                                        <h6 class="mb-0">Dons & financements</h6>
-                                        <small class="text-muted">Gérer les contributions</small>
-                                    </div>
+                            <div class="col-6 col-md-3">
+                                <a href="<?= base_url('Dons') ?>" class="btn btn-outline-info border-0 shadow-sm p-3 w-100 hover-lift">
+                                    <i class="bx bx-donate-heart fs-2 d-block mb-2"></i> Dons
                                 </a>
                             </div>
-                            
-                            <div class="col-md-3">
-                                <a href="<?= base_url('Membres') ?>" class="card action-card border-0 text-decoration-none text-center p-4 hover-lift">
-                                    <div class="card-body">
-                                        <div class="avatar mx-auto mb-3" style="background-color: rgba(255, 140, 0, 0.1); width: 70px; height: 70px; border-radius: 15px; display: flex; align-items: center; justify-content: center;">
-                                            <i class="bx bx-user-circle fs-3" style="color: var(--orange);"></i>
-                                        </div>
-                                        <h6 class="mb-0">Membres</h6>
-                                        <small class="text-muted"><?= $members_total ?? 0 ?> inscrits</small>
-                                    </div>
+                            <div class="col-6 col-md-3">
+                                <a href="<?= base_url('Membres') ?>" class="btn btn-outline-warning border-0 shadow-sm p-3 w-100 hover-lift text-center">
+                                    <i class="bx bx-group fs-2 d-block mb-2"></i> Membres
                                 </a>
                             </div>
                         </div>
@@ -318,77 +254,72 @@
             </div>
         </div>
     </div>
-    
 
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-// Script simple pour le graphique circulaire
 document.addEventListener('DOMContentLoaded', function() {
-    const ctx = document.getElementById('memberChart').getContext('2d');
-    const fondateurs = <?= $members_fondateurs ?? 0 ?>;
-    const adherents = <?= $members_adherants ?? 0 ?>;
-    const sympathisants = <?= $members_sympathisants ?? 0 ?>;
     
-    new Chart(ctx, {
+    // 1. Graphique des membres
+    const ctxMember = document.getElementById('memberChart').getContext('2d');
+    new Chart(ctxMember, {
         type: 'doughnut',
         data: {
-            labels: ['Fondateurs', 'Adhérents', 'Sympathisants'],
+            labels: ['Fondateurs', 'Adhérents', "Membres d'honneur", 'Sympathisants'],
             datasets: [{
-                data: [fondateurs, adherents, sympathisants],
-                backgroundColor: [
-                    '#062C54',  // bleu-fonce
-                    '#FF8C00',  // orange
-                    '#FFD000'   // jaune
+                data: [
+                    <?= $members_fondateurs ?? 0 ?>, 
+                    <?= $members_adherants ?? 0 ?>, 
+                    <?= $members_honneur ?? 0 ?>, 
+                    <?= $members_sympathisants ?? 0 ?>
                 ],
-                borderWidth: 0,
-                hoverOffset: 4
+                backgroundColor: ['#062C54', '#FF8C00', '#1a8c78', '#FFD000'],
+                borderWidth: 2,
+                hoverOffset: 5
             }]
         },
         options: {
-            responsive: false,
-            plugins: {
-                legend: {
-                    display: false
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            const total = fondateurs + adherents + sympathisants;
-                            const percentage = total > 0 ? Math.round((context.raw / total) * 100) : 0;
-                            return `${context.label}: ${context.raw} (${percentage}%)`;
-                        }
-                    }
-                }
-            },
-            cutout: '65%'
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '75%',
+            plugins: { legend: { display: false } }
         }
     });
+
+    // 2. Graphique des pays
+    <?php if(!empty($visitors_country)): ?>
+    const ctxCountry = document.getElementById('countryChart').getContext('2d');
+    new Chart(ctxCountry, {
+        type: 'bar',
+        data: {
+            labels: [<?php foreach($visitors_country as $c) { echo "'" . addslashes(htmlspecialchars($c->country)) . "',"; } ?>],
+            datasets: [{
+                label: 'Visiteurs',
+                data: [<?php foreach($visitors_country as $c) { echo $c->total . ","; } ?>],
+                backgroundColor: '#1a8c78',
+                borderRadius: 5
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+                y: { beginAtZero: true, ticks: { stepSize: 1 } }
+            }
+        }
+    });
+    <?php endif; ?>
 });
 </script>
 
 <style>
-.hover-lift {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.hover-lift:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
-}
-.action-card:hover {
-    background-color: #f8f9fa;
-}
-.avatar {
-    transition: transform 0.3s ease;
-}
-.hover-lift:hover .avatar {
-    transform: scale(1.1);
-}
-.progress {
-    border-radius: 10px;
-}
-.progress-bar {
-    border-radius: 10px;
-}
+    .hover-lift {transition: all 0.3s ease;height: 120px}
+    .hover-lift:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.08)!important; }
+    .avatar { transition: all 0.3s ease; }
+    .hover-lift:hover .avatar { transform: scale(1.1); ;}
+    .card { border-radius: 12px; }
+    .progress { border-radius: 20px; background-color: #f0f0f0; overflow: hidden; }
 </style>
 
-<?php include VIEWPATH.'includes/backend/Footer.php'; ?>
+<?php include VIEWPATH . 'includes/backend/Footer.php'; ?>

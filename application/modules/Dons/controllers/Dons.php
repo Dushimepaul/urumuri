@@ -9,12 +9,40 @@ class Dons extends MY_Controller {
         if ($this->session->userdata('logged_in') !== TRUE) {
          redirect('Admin');
     }
+}
 
     public function index() {
         $data['dons'] = $this->Model->read('dons', null, 'id','DESC');
         $data['methodes_paiement'] = $this->Model->read('mode_payement', null, 'id_mode_payement');
         $this->load->view('Dons_View', $data);
     }
+
+
+   public function ChangeStatus() {
+    $id = $this->input->post('id');
+    $current_status = $this->input->post('current_status');
+
+    // Bascule entre 'valide' et 'en_attente'
+    $new_status = ($current_status == 'en_attente') ? 'valide' : 'en_attente';
+
+    // Mise à jour de la colonne 'statut' (vérifiez que le nom de la colonne est bien 'statut')
+    $rsp = $this->Model->update('dons', ['id' => $id], ['statut' => $new_status]);
+
+    if ($rsp) {
+        $sms['sms'] = '<div class="alert alert-success fade show mt-1 message fade show" role="alert">
+                               Le statut a été mis à jour avec succès !
+                           </div>';              
+    } else {
+        $sms['sms'] = '<div class="alert alert-success fade show mt-1 message fade show" role="alert">
+                               <strong>Oups!</strong> Une erreur est survenue, contactez l\'administrateur.
+                           </div>';                 
+    }
+
+    $this->session->set_flashdata($sms);
+    redirect(base_url('Dons'));
+}
+
+
 
      public function Create() {
  $nom        = $this->input->post('nom_complet', true);

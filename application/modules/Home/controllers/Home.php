@@ -42,6 +42,8 @@ class Home extends My_Controller
 
     $data['objectifs']=$this->Model->read('objectifs',null,'id_objectif');
 
+    $this->Model->log_visit();
+
     // Charger la vue
     $this->load->view('Home_View', $data);
 }

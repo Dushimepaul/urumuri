@@ -10,7 +10,7 @@ class Galleries extends MY_Controller {
          redirect('Admin');
     }
 
-    
+   } 
     public function index()
     {
         $data['galleries'] = $this->Model->read('gallery', null, 'IdGallery');

@@ -300,12 +300,105 @@ function getYoutubeId($url)
 }
 
 
+/*
+ public function log_visit()
+{
+    $ip = $this->input->ip_address(); 
+    $today = date('Y-m-d');
+    $current_page = current_url();
 
+    // Si on est en local, on met une IP de test pour voir si ça marche
+    if ($ip == '::1' || $ip == '127.0.0.1') {
+        $ip = '104.28.147.22'; // IP de test (Bujumbura par exemple)
+    }
 
+    // 1. On vérifie l'existence pour l'IP, la PAGE et la DATE précise
+    $this->db->where('ip_address', $ip);
+    $this->db->where('visit_date', $today);
+    $this->db->where('page', $current_page);
+    $query = $this->db->get('visitors_logs');
 
+    // 2. Si le résultat est vide, on insère
+    if ($query->num_rows() == 0) {
+        
+        // On n'appelle l'API que si on va vraiment insérer (gain de performance)
+        $geo = @json_decode(file_get_contents("https://ipapi.co/{$ip}/json/"));
+
+        $data = [
+            'ip_address' => $ip,
+            'user_agent' => $this->input->user_agent(),
+            'device'     => $this->agent->is_mobile() ? 'Mobile' : 'Desktop',
+            'page'       => $current_page,
+            'referer'    => $this->agent->referrer(),
+            'visit_date' => $today,
+            'visit_time' => date('H:i:s'),
+            'country'    => $geo->country_name ?? 'Unknown',
+            'city'       => $geo->city ?? 'Unknown',
+            'latitude'   => $geo->latitude ?? null,
+            'longitude'  => $geo->longitude ?? null
+        ];
+
+        $this->db->insert('visitors_logs', $data);
+    }
+}
+
+*/public function log_visit() {
+    $ip = $this->input->ip_address();
+    
+    // Forcer une IP publique si on est en local
+    if ($ip == '::1' || $ip == '127.0.0.1') {
+        $ip = '197.255.128.0'; 
+    }
+
+    $today = date('Y-m-d');
+    $current_page = current_url();
+
+    // Vérification anti-doublon
+    $exists = $this->db->get_where('visitors_logs', [
+        'ip_address' => $ip, 
+        'visit_date' => $today,
+        'page'       => $current_page
+    ])->row();
+
+    if (!$exists) {
+        // Utilisation de ip-api.com (plus stable pour le local)
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, "http://ip-api.com/json/{$ip}");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+        
+        $response = curl_exec($ch);
+        $geo = json_decode($response, true); // true pour avoir un tableau associatif
+        curl_close($ch);
+
+        $data = [
+            'ip_address' => $ip,
+            'user_agent' => $this->input->user_agent(),
+            'device'     => $this->agent->is_mobile() ? 'Mobile' : 'Desktop',
+            'page'       => $current_page,
+            'referer'    => $this->agent->referrer(),
+            'visit_date' => $today,
+            'visit_time' => date('H:i:s'),
+            // Adaptation aux clés de ip-api.com
+            'country'    => $geo['country'] ?? 'Unknown',
+            'city'       => $geo['city'] ?? 'Unknown',
+            'latitude'   => $geo['lat'] ?? null,
+            'longitude'  => $geo['lon'] ?? null
+        ];
+
+        $this->db->insert('visitors_logs', $data);
+    }
+}
 
 
 
     }
  
 
+
+
+
+
+
+
+   

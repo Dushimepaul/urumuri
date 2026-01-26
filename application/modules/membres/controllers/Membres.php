@@ -9,7 +9,7 @@ class Membres extends MY_Controller {
         if ($this->session->userdata('logged_in') !== TRUE) {
          redirect('Admin');
     }
-
+}
     public function index()
 
     {   
@@ -36,11 +36,11 @@ class Membres extends MY_Controller {
       $rsp = $this->Model->update('membres', ['id' => $id], ['statut' => $new_status]);
 
         if ($rsp) {
-            $sms['sms'] = '<div class="alert alert-success fade show mt-1 message" role="alert">
+            $sms['sms'] = '<div class="alert alert-success fade show mt-1 message fade show" role="alert">
                                Statut du membre mis à jour avec succès.
                            </div>';
         } else {
-            $sms['sms'] = '<div class="alert alert-danger fade show mt-1 message" role="alert">
+            $sms['sms'] = '<div class="alert alert-danger fade show mt-1 message fade show" role="alert">
                                <strong class="text-danger">Oups!</strong> Une erreur est survenue.
                            </div>';
         }

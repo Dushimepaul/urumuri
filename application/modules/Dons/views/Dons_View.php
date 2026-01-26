@@ -58,19 +58,17 @@
                                     <small><i class="bx bx-map"></i> <?= htmlspecialchars($value['pays']) ?></small>
                                 </td>
                                 <td>
-                                    <div class="dropdown">
-                                        <button class="btn btn-sm dropdown-toggle status-btn 
-                                            <?= ($value['statut'] == 'valide') ? 'btn-success' : 
-                                               (($value['statut'] == 'annule') ? 'btn-danger' : 'btn-warning') ?>" 
-                                            type="button" data-bs-toggle="dropdown" data-id="<?= $value['id'] ?>">
-                                            <?= ucfirst(str_replace('_', ' ', $value['statut'])) ?>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item change-status" href="#" data-statut="en_attente">En attente</a></li>
-                                            <li><a class="dropdown-item change-status" href="#" data-statut="valide">Validé</a></li>
-                                            <li><a class="dropdown-item change-status" href="#" data-statut="annule">Annulé</a></li>
-                                        </ul>
-                                    </div>
+                                    <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#Status_<?=$value['id']?>"  class="text-decoration-none">
+                                        <?php if ($value['statut'] == 'en_attente'): ?>
+                               <span class="badge bg-warning text-dark">
+                                <i class="bx bx-time-five"></i> En attente
+                                 </span>
+                             <?php else: ?>
+                                   <span class="badge bg-success">
+                                <i class="bx bx-check-circle"></i> Validé
+                                  </span>
+                              <?php endif; ?>
+                                </a>
                                 </td>
                                 <td>
                                     <?= date('d/m/Y', strtotime($value['created_at'])) ?><br>
@@ -238,6 +236,38 @@
                                     </div>
                                 </div>
                             </div>
+
+
+
+<div class="modal fade" id="Status_<?=$value['id']?>">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Changer le statut ?</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <form action="<?=base_url('Dons/ChangeStatus')?>" method="POST">
+                <div class="modal-body text-center">
+                    <input type="hidden" name="id" value="<?=$value['id']?>">
+                    <input type="hidden" name="current_status" value="<?=$value['statut']?>">
+                    
+                    <p>Voulez-vous changer le statut du don de :<br>
+                    <strong><?= ($value['statut'] == 'en_attente') ? '<span class="text-warning">En attente</span>' : '<span class="text-success">Validé</span>' ?></strong> 
+                    vers 
+                    <strong><?= ($value['statut'] == 'en_attente') ? '<span class="text-success">Validé</span>' : '<span class="text-warning">En attente</span>' ?></strong> ?
+                    </p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-primary">Confirmer le changement</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 
                             <!-- Modal de suppression -->
                             <div class="modal fade" id="delete_<?= $value['id'] ?>" tabindex="-1">

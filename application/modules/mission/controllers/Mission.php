@@ -10,7 +10,7 @@ class Mission extends MY_Controller {
          redirect('Admin');
     }
 
-    
+    }
 	public function index()
 	{
 		$data['mission']=$this->Model->read('mission',null,'id_mission');

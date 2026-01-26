@@ -12,6 +12,7 @@ class Projects extends MY_Controller {
          redirect('Admin');
         $this->load->library('email');
     }
+}
 
     /* ==============================
      * LIST PROJECTS

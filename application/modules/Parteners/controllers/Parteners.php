@@ -13,7 +13,7 @@ class Parteners extends MY_Controller {
         if ($this->session->userdata('logged_in') !== TRUE) {
          redirect('Admin');
     }
-
+}
     
 	public function index()
 	{

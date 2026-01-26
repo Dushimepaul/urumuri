@@ -8,6 +8,7 @@ class Objectifs extends MY_Controller{
         if ($this->session->userdata('logged_in') !== TRUE) {
          redirect('Admin');
     }
+}
     function index(){
         
 		$data['objectifs']=$this->Model->read('objectifs',null,'id_objectif');

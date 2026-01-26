@@ -9,6 +9,7 @@ class Contact_Us extends MY_Controller {
 		if ($this->session->userdata('logged_in') !== TRUE) {
          redirect('Admin');
 	}
+}
 
     
 	public function index()
@@ -101,28 +102,9 @@ class Contact_Us extends MY_Controller {
 
 
 
-
-
-
-
-	//   //upload images
-	// public function upload_document($nom_file,$nom_champ)
-	// {
-	//       $ref_folder =FCPATH.'attachments/Carousel/';
-	//       $code=date("YmdHis").uniqid();
-	//       $fichier=basename($code);
-	//       $file_extension = pathinfo($nom_champ, PATHINFO_EXTENSION);
-	//       $file_extension = strtolower($file_extension);
-	//       $valid_ext = array('gif','jpg','png','jpeg','JPG','PNG','JPEG');
-
-	//       if(!is_dir($ref_folder)) //create the folder if it does not already exists   
-	//       {
-	//           mkdir($ref_folder,0777,TRUE);                                        
-	//       }  
-	//       move_uploaded_file($nom_file, $ref_folder.$fichier.".".$file_extension);
-	//       // $pathfile="attachments/shop_images/".$fichier.".".$file_extension;
-	//       $image_name=$fichier.".".$file_extension;
-	//       return $image_name;
-	// }
+public function MarkAsRead($id) {
+    $this->Model->update('contact_us', ['IdContact' => $id], ['is_readed' => 1]);
+    echo json_encode(['status' => true]);
+}
 }
 

@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--favicon-->
-	<link rel="icon" href="<?=base_url()?>assets/frontend/img/logo/urumuri.jpeg" type="image/jpeg">
+	<link rel="icon" href="<?= base_url('attachments/Other/' . $this->Model->get_setting('site_favicon', 'logo.png')) ?>" type="image/jpeg">
 	<!--plugins-->
 	<link href="<?=base_url()?>assets/backend/plugins/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet">
 	<link href="<?=base_url()?>assets/backend/plugins/simplebar/css/simplebar.css" rel="stylesheet">

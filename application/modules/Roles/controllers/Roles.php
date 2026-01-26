@@ -15,6 +15,7 @@ class Roles extends MY_Controller {
         if ($this->session->userdata('logged_in') !== TRUE) {
          redirect('Admin');
     }
+}
 
     // Affichage des rôles
     public function index()
