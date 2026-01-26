@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 23 jan. 2026 à 13:29
+-- Généré le : lun. 26 jan. 2026 à 18:17
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.0.30
 
@@ -106,8 +106,17 @@ CREATE TABLE `contact_us` (
   `Message` text NOT NULL,
   `PhoneNumber` varchar(12) NOT NULL,
   `Date_creation` datetime NOT NULL DEFAULT current_timestamp(),
-  `Location` varchar(200) NOT NULL
+  `Location` varchar(200) NOT NULL,
+  `is_readed` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `contact_us`
+--
+
+INSERT INTO `contact_us` (`IdContact`, `FullName`, `Email`, `Subject`, `Message`, `PhoneNumber`, `Date_creation`, `Location`, `is_readed`) VALUES
+(5, 'Dushime paul', 'dushimepaul51@gmail.com', 'demande', 'Que vous soyez un partenaire potentiel, un futur volontaire ou simplement curieux, n\'hésitez pas à nous envoyer un message.\r\nQue vous soyez un partenaire potentiel, un futur volontaire ou simplement curieux, n\'hésitez pas à nous envoyer un message.\r\n\r\nQue vous soyez un partenaire potentiel, un futur volontaire ou simplement curieux, n\'hésitez pas à nous envoyer un message.', '68863945', '0000-00-00 00:00:00', 'Bujumbura', 1),
+(6, 'Dushime paul', 'dushime@gmail.com', 'sdhsdsd', '4549583-45', '5849584', '2026-01-26 00:00:00', '', 0);
 
 -- --------------------------------------------------------
 
@@ -151,7 +160,7 @@ CREATE TABLE `dons` (
 --
 
 INSERT INTO `dons` (`id`, `type_don`, `nom_complet`, `email`, `telephone`, `pays`, `statut`, `created_at`, `updated_at`) VALUES
-(17, 'financier', 'dushime paul', 'dushimepaul51@gmail.com', '5763894', 'burundi', 'en_attente', '2026-01-23 12:01:24', '2026-01-23 12:01:24');
+(17, 'financier', 'dushime paul', 'dushimepaul51@gmail.com', '5763894', 'burundi', 'en_attente', '2026-01-23 12:01:24', '2026-01-26 09:04:30');
 
 -- --------------------------------------------------------
 
@@ -179,6 +188,13 @@ CREATE TABLE `dons_financiers` (
   `is_mensuel` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Déchargement des données de la table `dons_financiers`
+--
+
+INSERT INTO `dons_financiers` (`id`, `don_id`, `montant`, `id_methode_paiement`, `is_mensuel`) VALUES
+(10, 17, 60.00, 3, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -190,6 +206,13 @@ CREATE TABLE `dons_materiels` (
   `don_id` int(11) NOT NULL,
   `description_materiel` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `dons_materiels`
+--
+
+INSERT INTO `dons_materiels` (`id`, `don_id`, `description_materiel`) VALUES
+(8, 17, 'nxvjoeirjie');
 
 -- --------------------------------------------------------
 
@@ -237,7 +260,8 @@ INSERT INTO `gallery` (`IdGallery`, `TypeMedia`, `Media`, `Description`, `Create
 (5, 'image', 'deae043c34ac6e9ecc55fceaa7449e9c.jpg', 'dsjiiiiiiii', '2025-12-16 17:51:54'),
 (6, 'link', 'https://youtu.be/7umPAcyVg1U?si=RYmnAAUrlCv_5g_F', 'aaaaaaaaaaaaaaaaaaaaa', '2025-12-16 18:08:46'),
 (7, 'video', 'e08d34006303ac223a58f37fb127841e.mp4', 'WEB SITE OF ITN', '2026-01-22 13:35:57'),
-(8, 'image', '20260122195648697272f0b0314.jpg', 'kjhkj', '2026-01-22 18:56:49');
+(8, 'image', '20260122195648697272f0b0314.jpg', 'kjhkj', '2026-01-22 18:56:49'),
+(9, 'video', '202601250729286975b8489e5eb.mp4', 'hggk', '2026-01-25 06:29:28');
 
 -- --------------------------------------------------------
 
@@ -270,19 +294,20 @@ CREATE TABLE `membres` (
 INSERT INTO `membres` (`id`, `nom_complet`, `email`, `telephone`, `adresse`, `image`, `profil`, `facebook`, `linkedln`, `youtube`, `instagram`, `categories_membre_id`, `date_inscription`, `statut`, `ordre_affichage`) VALUES
 (1, 'MANIRAMPAYE Alain Jupin', 'alain@gmail.com', '', '', '', 'Directeur', '', '', 'http://youtube.com', '', 1, '2026-01-12', 'actif', 1),
 (2, 'NITRANDERKURA Eric', '', '', '', '', 'enseignants', '', '', '', '', 1, '2026-01-12', 'actif', 7),
-(3, 'ISHIWE Inès Hungues Marguerite', 'hhcccccccccccccc@gmail.com', '88888888888', 'ui8yoho', '', 'directeru', 'fecebook.com', 'linkedln.com', 'youtube.com', 'instagram.com', 1, '2026-01-12', 'inactif', 0),
+(3, 'ISHIWE Inès Hungues Marguerite', 'hhcccccccccccccc@gmail.com', '88888888888', 'ui8yoho', '', 'directeru', 'fecebook.com', 'linkedln.com', 'youtube.com', 'instagram.com', 3, '2026-01-12', 'actif', 0),
 (4, 'BUKURU Révérien', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2026-01-12', 'actif', 0),
-(5, 'AKIMANA Christian Noël', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2026-01-12', 'actif', 0),
+(5, 'AKIMANA Christian Noël', '', '', '', '202601250742036975bb3b8f7a2.png', '', '', '', '', '', 1, '2026-01-12', 'actif', 0),
 (6, 'MUNEZERO Isaac', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2026-01-12', 'actif', 0),
 (7, 'MURERANYAMBO Belyse', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2026-01-12', 'actif', 0),
-(8, 'NDAYISHIMIYE Thierry', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2026-01-12', 'actif', 0),
+(8, 'NDAYISHIMIYE Thierry', '', '', '', '', '', '', '', '', '', 4, '2026-01-12', 'actif', 0),
 (9, 'NDAYISHIMIYE Arnauld', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2026-01-12', 'actif', 0),
 (10, 'SABUSHIMIKE Jean Claude', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2026-01-12', 'actif', 0),
 (11, 'NDUWUMANA Joseph', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2026-01-12', 'actif', 0),
 (12, 'NTIRAMPEBA Jean de Dieu', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2026-01-12', 'actif', 2),
 (13, 'DUSABE Emery', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2026-01-12', 'actif', 0),
-(14, 'BARENGAYABO Désiré', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2026-01-12', 'actif', 0),
-(15, 'KUMUGISHA Delie Drice', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2026-01-12', 'actif', 0);
+(14, 'BARENGAYABO Désiré', '', '', '', '202601250743026975bb7661d73.jpg', '', '', '', '', '', 1, '2026-01-12', 'actif', 0),
+(15, 'KUMUGISHA Delie Drice', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2026-01-12', 'actif', 0),
+(17, '934346', '334@gmail.com', 'wf', 'erhwe', '', 'dfj', '', '', '', '', 2, '2026-01-25', 'actif', 34);
 
 -- --------------------------------------------------------
 
@@ -341,7 +366,8 @@ CREATE TABLE `newsletter` (
 --
 
 INSERT INTO `newsletter` (`id_newsletter`, `email`, `date_inscription`) VALUES
-(9, 'dushimepaul51@gmail.com', '2026-01-18 19:31:58');
+(9, 'dushimepaul51@gmail.com', '2026-01-18 19:31:58'),
+(10, 'blandineuwineza01@gmail.com', '2026-01-25 08:13:31');
 
 -- --------------------------------------------------------
 
@@ -414,7 +440,9 @@ CREATE TABLE `projects` (
 --
 
 INSERT INTO `projects` (`id`, `title`, `description`, `image`, `status`, `date_debut`, `date_fin`, `created_at`) VALUES
-(2, 'methoucela', 'Il est créé une association sans but lucratif dénommée “ URUMURI INITIATIVE FOR CHANGE AND SUSTAINABLE DEVELOPMENT”, ayant pour sigle URUMURI_ICSD. Le nom est traduit en français comme URUMURI Initiative pour le Changement et le Développement durable.\r\nIl est créé une association sans but lucratif dénommée “ URUMURI INITIATIVE FOR CHANGE AND SUSTAINABLE DEVELOPMENT”, ayant pour sigle URUMURI_ICSD. Le nom est traduit en français comme URUMURI Initiative pour le Changement et le Développement durable.', '2026012309015169732aef7dea6.jpg', 'completed', '2026-01-08', '2026-01-30', '2026-01-16 09:56:49');
+(2, 'methoucela', 'Il est créé une association sans but lucratif dénommée “ URUMURI INITIATIVE FOR CHANGE AND SUSTAINABLE DEVELOPMENT”, ayant pour sigle URUMURI_ICSD. Le nom est traduit en français comme URUMURI Initiative pour le Changement et le Développement durable.\r\nIl est créé une association sans but lucratif dénommée “ URUMURI INITIATIVE FOR CHANGE AND SUSTAINABLE DEVELOPMENT”, ayant pour sigle URUMURI_ICSD. Le nom est traduit en français comme URUMURI Initiative pour le Changement et le Développement durable.', '2026012309015169732aef7dea6.jpg', 'ongoing', '2026-01-08', '2026-01-30', '2026-01-16 09:56:49'),
+(4, 'Donation des cadeaux', 'jkxzvhowoeif oweiio0w9e 09wutwe we0twe=ti t-08t ei9t4', '202601250844506975c9f29bbca.png', 'ongoing', NULL, NULL, '2026-01-25 07:44:50'),
+(5, 'ndagenda guhindura', '3Umwami Nebukadineza yakoze igishushanyo mw izahabu, uburebure bgaco bgar\' amatambge mirongwitandatu y\'ukuboko uciriye mu nkokora, ubgaguke bgaco bgar\' amatambge atandatu: agihagarika mu kiyaga c\'i Dura, mu ntara y\'i Babuloni. 2 Nuk\' umwami Nebukadineza atuma gukoranya i... ', '202601250916196975d1530bd7a.jpg', 'completed', NULL, NULL, '2026-01-25 08:16:19');
 
 -- --------------------------------------------------------
 
@@ -494,7 +522,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `membre_id`, `email`, `pass_word`, `role_id`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 1, 'paul@gmail.com', '$2y$10$ZjEnVHpT9urbVI2jxDZT7eHo5M8bnyYYrDnxjhEZ9Pye.CG6vtI6C', 3, 1, '2026-01-20 15:45:01', '2026-01-20 14:47:17');
+(1, 1, 'admin@gmail.com', '$2y$10$WaJPTGYl.mojMwk5g2eQ0OgieLbXOwonXENgSfO3yCBGqV0s2qPwy', 3, 1, '2026-01-20 15:45:01', '2026-01-26 10:39:50');
 
 -- --------------------------------------------------------
 
@@ -514,6 +542,35 @@ CREATE TABLE `vision` (
 
 INSERT INTO `vision` (`id`, `content`, `date_creation`) VALUES
 (1, 'Être une lumière qui inspire et guide la jeunesse burundaise vers un avenir uni, prospère et \r\nintègre.\r\n', '2026-01-13 20:10:01');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `visitors_logs`
+--
+
+CREATE TABLE `visitors_logs` (
+  `id` int(11) NOT NULL,
+  `ip_address` varchar(45) NOT NULL,
+  `user_agent` text DEFAULT NULL,
+  `device` enum('Mobile','Desktop','Other') DEFAULT 'Desktop',
+  `page` varchar(255) DEFAULT NULL,
+  `referer` varchar(255) DEFAULT NULL,
+  `visit_date` date NOT NULL,
+  `visit_time` time NOT NULL,
+  `country` varchar(100) DEFAULT NULL,
+  `city` varchar(100) DEFAULT NULL,
+  `latitude` varchar(50) DEFAULT NULL,
+  `longitude` varchar(50) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `visitors_logs`
+--
+
+INSERT INTO `visitors_logs` (`id`, `ip_address`, `user_agent`, `device`, `page`, `referer`, `visit_date`, `visit_time`, `country`, `city`, `latitude`, `longitude`, `created_at`) VALUES
+(12, '197.255.128.0', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36 Edg/144.0.0.0', 'Desktop', 'http://localhost/urumuri/', 'http://localhost/urumuri/', '2026-01-26', '10:30:12', 'Cabo Verde', 'Praia', '14.923', '-23.508', '2026-01-26 09:30:12');
 
 --
 -- Index pour les tables déchargées
@@ -661,6 +718,12 @@ ALTER TABLE `vision`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `visitors_logs`
+--
+ALTER TABLE `visitors_logs`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT pour les tables déchargées
 --
 
@@ -686,7 +749,7 @@ ALTER TABLE `categories_membre`
 -- AUTO_INCREMENT pour la table `contact_us`
 --
 ALTER TABLE `contact_us`
-  MODIFY `IdContact` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `IdContact` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `devise`
@@ -710,13 +773,13 @@ ALTER TABLE `dons_competences`
 -- AUTO_INCREMENT pour la table `dons_financiers`
 --
 ALTER TABLE `dons_financiers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT pour la table `dons_materiels`
 --
 ALTER TABLE `dons_materiels`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT pour la table `faq`
@@ -728,13 +791,13 @@ ALTER TABLE `faq`
 -- AUTO_INCREMENT pour la table `gallery`
 --
 ALTER TABLE `gallery`
-  MODIFY `IdGallery` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `IdGallery` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT pour la table `membres`
 --
 ALTER TABLE `membres`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT pour la table `mission`
@@ -752,7 +815,7 @@ ALTER TABLE `mode_payement`
 -- AUTO_INCREMENT pour la table `newsletter`
 --
 ALTER TABLE `newsletter`
-  MODIFY `id_newsletter` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_newsletter` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT pour la table `objectifs`
@@ -770,7 +833,7 @@ ALTER TABLE `partener`
 -- AUTO_INCREMENT pour la table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `roles`
@@ -795,6 +858,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `vision`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT pour la table `visitors_logs`
+--
+ALTER TABLE `visitors_logs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Contraintes pour les tables déchargées

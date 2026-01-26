@@ -72,7 +72,7 @@ class Dashboard extends My_Controller
         // 3. PRÉPARATION DU TABLEAU DATA
         $data = [
             // Statistiques principales
-            'message_non_lus' => $this->Model->count('contact_us',['is_readed' => 1]),
+            'message_non_lus' => $this->Model->count('contact_us',['is_readed' => 0]),
             'contact_count'        => $this->Model->count('contact_us'),
             'projects_completed'   => $this->Model->count('projects', ['status' => 'completed']),
             'projects_in_progress' => $this->Model->count('projects', ['status' => 'ongoing']),
