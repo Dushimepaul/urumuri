@@ -6,7 +6,8 @@ class Categories_membre extends MY_Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Model');
+        if ($this->session->userdata('logged_in') !== TRUE) {
+         redirect('Admin');
     }
 
     public function index()

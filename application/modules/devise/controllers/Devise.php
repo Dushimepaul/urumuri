@@ -6,8 +6,8 @@ class Devise extends MY_Controller {
 	function __construct()
     {
         parent::__construct();
-       // $this->not_logged_in();
-		$this->load->model('Model');
+       if ($this->session->userdata('logged_in') !== TRUE) {
+         redirect('Admin');
     }
 
     
@@ -16,6 +16,11 @@ class Devise extends MY_Controller {
 		$data['devise']=$this->Model->read('devise',null,'id_devise');
 		$this->load->view('deviseView',$data);
 	}
+
+	  public function read(){
+	  	$data=$this->Model->read('devise');
+	  	echo json_encode($data);
+	  }
 
 
 	function Creer_devise(){

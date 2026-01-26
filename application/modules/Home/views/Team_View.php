@@ -176,10 +176,10 @@
                     <div class="col-md-4 col-lg-3 col-sm-6">
                         <div class="member-card">
                             <div class="member-img-wrapper">
-                                <img src="<?= base_url('assets/frontend/img/team/' . ($member['photo'] ?? 'default-avatar.jpg')) ?>"
+                                <img src="<?=base_url()?>attachments/membres/<?=$member['image']?>"
                                      class="member-img"
                                      alt="<?= htmlspecialchars($member['nom_complet']) ?>"
-                                     onerror="this.src='<?= base_url('assets/frontend/img/logo/LAVI.png') ?>'">
+                                     onerror="this.src='<?= base_url('assets/backend/images/user.png') ?>'">
                             </div>
                             <h5 class="fw-bold mb-2"><?= htmlspecialchars($member['nom_complet']) ?></h5>
                             <p class="text-teal small fw-bold mb-3"><?= htmlspecialchars($member['profil']) ?></p>

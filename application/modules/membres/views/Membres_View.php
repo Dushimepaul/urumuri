@@ -134,9 +134,13 @@
                                                         <input type="text" class="form-control" name="profil" value="<?=$value['profil']?>" placeholder="Ex: Directeur">
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <label class="form-label">ID Catégorie</label>
-                                                        <input type="number" class="form-control" name="categories_membre_id" value="<?=$value['categories_membre_id']?>">
-                                                    </div>
+                                                        <label class="form-label">Catégorie</label>
+                                                         <select name="categories_membre_id" class="form-control">
+                                                        <?php foreach ($categories as $categorie): ?>
+                                                         <option value="<?=$categorie['id']?>" <?= $categorie['id'] == $value['categories_membre_id']?'selected':'' ?> > <?=$categorie['nom']?> </option>
+                                                      <?php endforeach ?> 
+                                                       </select>
+                                                        </div>
                                                     <div class="col-md-4">
                                                         <label class="form-label">Image (Actuelle : <?=$value['image']?>)</label>
                                                         <input type="hidden" name="HiddenImage" value="<?=$value['image']?>">
@@ -267,9 +271,14 @@
                             <input type="text" class="form-control" name="profil">
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label">Catégorie (ID)</label>
-                            <input type="number" class="form-control" name="categories_membre_id" value="1">
+                            <label class="form-label">ID Catégorie</label>
+                              <select name="categories_membre_id" class="form-control">
+                              <?php foreach ($categories as $categorie): ?>
+                                <option value="<?=$categorie['id']?>"> <?=$categorie['nom']?> </option>
+                                <?php endforeach ?> 
+                             </select>
                         </div>
+                        
                         <div class="col-md-4">
                             <label class="form-label">Photo</label>
                             <input type="file" class="form-control" name="image">

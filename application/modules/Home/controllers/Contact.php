@@ -31,14 +31,16 @@ class Contact extends MY_Controller
 
         if ($rsp) {
 
-            /* ================= EMAIL ================= */
+            $smtp_pass = $this->Model->get_setting('password_email16caractere', 'xxxxxxxx');
+            $smtp_email = $this->Model->get_setting('site_email', 'exemple@gmail.com');
+
 
             $config = [
                 'protocol'    => 'smtp',
                 'smtp_host'   => 'smtp.gmail.com',
                 'smtp_port'   => 587,
-                'smtp_user'   => 'dushimeyesupaulin@gmail.com',
-                'smtp_pass'   => 'pmhkniuvlqnwyblm',
+                'smtp_user'   => $smtp_email,
+                'smtp_pass'   => $smtp_pass,
                 'smtp_crypto' => 'tls',
                 'mailtype'    => 'html',
                 'charset'     => 'utf-8',
@@ -48,9 +50,9 @@ class Contact extends MY_Controller
             $this->email->initialize($config);
 
             //Visiteur → Association
-            $this->email->from('dushimeyesupaulin@gmail.com', 'URUMURI ICSB');
+            $this->email->from($smtp_email,'URUMURI ICSB');
             $this->email->reply_to($data['Email'], $data['FullName']);
-            $this->email->to('dushimeyesupaulin@gmail.com');
+            $this->email->to($smtp_email);
             $this->email->subject("Quelqu'un vous a contacté sur le site Urumuri");
             $this->email->message(nl2br($data['Message']));
             $this->email->send();
@@ -58,7 +60,7 @@ class Contact extends MY_Controller
             //Confirmation → Visiteur
             $this->email->clear();
 
-            $this->email->from('dushimeyesupaulin@gmail.com', 'URUMURI ICSB');
+            $this->email->from($smtp_email,'URUMURI ICSB');
             $this->email->to($data['Email']);
             $this->email->subject('Message envoyé avec succès');
             $this->email->message("

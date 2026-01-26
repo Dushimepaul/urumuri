@@ -302,7 +302,7 @@
                             </div>
                             
                             <div class="col-md-3">
-                                <a href="<?= base_url('admin/membres') ?>" class="card action-card border-0 text-decoration-none text-center p-4 hover-lift">
+                                <a href="<?= base_url('Membres') ?>" class="card action-card border-0 text-decoration-none text-center p-4 hover-lift">
                                     <div class="card-body">
                                         <div class="avatar mx-auto mb-3" style="background-color: rgba(255, 140, 0, 0.1); width: 70px; height: 70px; border-radius: 15px; display: flex; align-items: center; justify-content: center;">
                                             <i class="bx bx-user-circle fs-3" style="color: var(--orange);"></i>

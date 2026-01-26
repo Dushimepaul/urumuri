@@ -3,26 +3,32 @@
 /* Sécurité : premier résultat */
 $project = $projects[0];
 ?>
+<style>
+    .page-header {
+        height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+        padding: 130px 0 90px;
+        position: relative;
+        background: linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.65)),
+                    url('https://images.unsplash.com/photo-1508780709619-79562169bc64') center/cover no-repeat;
+    }
 
-<!-- HERO -->
-<section class="hero-bg position-relative"
-    style="background-image: url('<?= base_url('https://images.unsplash.com/photo-1508780709619-79562169bc64') ?>');
-           background-size: cover;
-           background-position: center;
-           height: 320px;">
-    
-    <div class="position-absolute top-0 start-0 w-100 h-100"
-         style="background: rgba(0,0,0,0.6);"></div>
+</style>
 
-    <div class="container h-100 position-relative">
-        <div class="d-flex h-100 align-items-center justify-content-center text-center text-white">
-            <div>
-                <h1 class="fw-bold mb-2">Détails du projet</h1>
-                <p class="mb-0 opacity-75">Accueil / Projets / Détails</p>
-            </div>
-        </div>
+<!-- ================= PAGE HEADER ================= -->
+<section class="page-header text-white text-center">
+    <div class="flur"></div>
+    <div class="container">
+        <h1 class="display-4 fw-bold mb-3 animate-fade-in">Détails du projet</h1>
+        <p class="lead opacity-75 fs-5 animate-fade-in" style="animation-delay: 0.2s;">
+            Accueil / Projets / Détails
+        </p>
     </div>
 </section>
+
 
 <!-- CONTENU -->
 <section class="py-5 bg-light">

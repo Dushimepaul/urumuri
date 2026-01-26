@@ -13,6 +13,9 @@ class Dashboard extends My_Controller
     public function __construct()
     {
         parent::__construct();
+        if ($this->session->userdata('logged_in') !== TRUE) {
+         redirect('Admin');
+}
     }
 
     public function index()

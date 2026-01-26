@@ -6,7 +6,8 @@ class Carousel extends MY_Controller {
 	function __construct()
     {
         parent::__construct();
-        //$this->not_logged_in();
+        if ($this->session->userdata('logged_in') !== TRUE) {
+         redirect('Admin');
     }
 
     

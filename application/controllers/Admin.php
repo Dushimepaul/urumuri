@@ -62,28 +62,27 @@ class Admin extends MY_Controller {
                 redirect(base_url('Dashboard'));
 
             } else {
-                $this->session->set_flashdata('error', 
-                    '<div id="message" class="alert alert-danger text-center">
-                        <strong>Erreur!</strong> Impossible de récupérer les informations utilisateur.
-                    </div>'
-                );
+
+                 $this->session->set_flashdata([
+                        'sms' => '<div class="alert alert-danger mt-1 message">
+                        Impossible de récupérer les informations utilisateur.
+                      </div>'
+        ]);
                 redirect(base_url('Admin'));
             }
         } else {
-            // Compte inactif ou mot de passe incorrect
-            $this->session->set_flashdata('error', 
-                '<div id="message" class="alert alert-danger text-center">
-                    <strong>Oups!</strong> Mot de passe incorrect ou compte non activé.
-                </div>'
-            );
+            $this->session->set_flashdata([
+                        'sms' => '<div class="alert alert-danger mt-1 message">
+                        <strong>Oups!</strong> Mot de passe incorrect ou compte non activé.
+                      </div>']);
             redirect(base_url('Admin'));
         }
     } else {
-        $this->session->set_flashdata('error', 
-            '<div id="message" class="alert alert-danger text-center">
-                <strong>Oups!</strong> Email incorrect ou compte désactivé.
-            </div>'
-        );
+          $this->session->set_flashdata([
+                        'sms' => '<div class="alert alert-danger mt-1 message">
+                        <strong>Oups!</strong> Email incorrect ou compte désactivé.
+                      </div>']);
+
         redirect(base_url('Admin'));
     }
 }

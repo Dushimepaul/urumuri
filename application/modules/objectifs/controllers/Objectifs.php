@@ -5,8 +5,8 @@ class Objectifs extends MY_Controller{
     function __construct(){
 
         parent::__construct();
-        //$this->not_logged_in();
-        $this->load->model('Model');
+        if ($this->session->userdata('logged_in') !== TRUE) {
+         redirect('Admin');
     }
     function index(){
         

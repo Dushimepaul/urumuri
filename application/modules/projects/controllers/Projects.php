@@ -1,24 +1,31 @@
+
+
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Projects extends MY_Controller {
 
-	function __construct()
+    public function __construct()
     {
         parent::__construct();
-        // $this->not_logged_in();
+        if ($this->session->userdata('logged_in') !== TRUE) {
+         redirect('Admin');
+        $this->load->library('email');
     }
 
-    
-	public function index()
-	{
-		$data['projects']=$this->Model->read('projects',null,'id');
-		$this->load->view('projects_View',$data);
-	
-	}
+    /* ==============================
+     * LIST PROJECTS
+     * ============================== */
+    public function index()
+    {
+        $data['projects'] = $this->Model->read('projects', null, 'id');
+        $this->load->view('projects_View', $data);
+    }
 
-
-	public function ChangeStatus()
+    /* ==============================
+     * CHANGE PROJECT STATUS
+     * ============================== */
+    	public function ChangeStatus()
 {
     $id     = $this->input->post('id');
     $status = $this->input->post('status');
@@ -53,108 +60,167 @@ class Projects extends MY_Controller {
     redirect(base_url('projects'));
 }
 
+    /* ==============================
+     * CREATE PROJECT
+     * ============================== */
+    public function Createprojects()
+    {
+        $title       = $this->input->post('title', TRUE);
+        $description = $this->input->post('description', TRUE);
 
+        $image = null;
+        if (!empty($_FILES['image']['name'])) {
+            $image = $this->upload_document($_FILES['image']['tmp_name'], $_FILES['image']['name']);
+        }
 
-	function Createprojects(){
-		$title=$this->input->post('title');
-		$description=$this->input->post('description');
-		$image=$this->upload_document($_FILES['image']['tmp_name'],$_FILES['image']['name']);
+        $data = [
+            'title'       => $title,
+            'description' => $description,
+            'image'       => $image,
+            'status'      => 'ongoing',
+            'created_at'  => date('Y-m-d H:i:s')
+        ];
 
-		$data=array('title'=>$title,
-	                'description'=>$description,
-	                'image'=>$image,
-	                
-	               );
-		$rsp=$this->Model->create('projects',$data);
+        $project_id = $this->Model->createLastId('projects', $data);
 
-		if ($rsp) {
-			$sms['sms']='<div class="alert alert-background fade show mt-1 message" role="alert">
-						     Content created successfully.
-						 </div>';
-		}else{
-            $sms['sms']='<div class="alert alert-background fade show mt-1 message" role="alert">
-						     <strong class="text-danger">Oups!</strong> An unknown error, contact admin!.
-						 </div>';
-		}
-		$this->session->set_flashdata($sms);
-		redirect(base_url('projects'));
+        if ($project_id) {
+            $this->sendNewsletter($project_id, $title, $description);
+            $this->setFlash('success', 'Projet créé avec succès.');
+        } else {
+            $this->setFlash('danger', 'Erreur inconnue, contactez l’administrateur.');
+        }
 
-		// print_r($data);
-	}
+        redirect('projects');
+    }
 
-	function Updateprojects(){
-		$id=$this->input->post('id');
-		$title=$this->input->post('title');
-		$description=$this->input->post('description');
-       
-		if (!empty($_FILES['image']['name'])) {
-		  $image=$this->upload_document($_FILES['image']['tmp_name'],$_FILES['image']['name']);
-		}else{
-		  $image=$this->input->post('HiddenImage');
-		}
-		
+    /* ==============================
+     * UPDATE PROJECT
+     * ============================== */
+    public function Updateprojects()
+    {
+        $id          = $this->input->post('id', TRUE);
+        $title       = $this->input->post('title', TRUE);
+        $description = $this->input->post('description', TRUE);
 
-		$data=array('title'=>$title,
-	                'description'=>$description,
-	                'image'=>$image,
-	                
-	               );
-		$rsp=$this->Model->update('projects',['id'=>$id],$data);
+        if (!empty($_FILES['image']['name'])) {
+            $image = $this->upload_document($_FILES['image']['tmp_name'], $_FILES['image']['name']);
+        } else {
+            $image = $this->input->post('HiddenImage', TRUE);
+        }
 
-		if ($rsp) {
-			$sms['sms']='<div class="alert alert-background fade show mt-1 message" role="alert">
-						     Content updated successfully.
-						 </div>';
-		}else{
-            $sms['sms']='<div class="alert alert-background fade show mt-1 message" role="alert">
-						     <strong class="text-danger">Oups!</strong> An unknown error, contact admin!.
-						 </div>';
-		}
-		$this->session->set_flashdata($sms);
-		redirect(base_url('projects'));
-	}
+        $data = [
+            'title'       => $title,
+            'description' => $description,
+            'image'       => $image
+        ];
 
+        $rsp = $this->Model->update('projects', ['id' => $id], $data);
 
-	function Deleteprojects(){
-		$id=$this->input->post('id');
-		$rsp=$this->Model->delete('projects',['id'=>$id]);
+        if ($rsp) {
+            $this->setFlash('success', 'Projet mis à jour avec succès.');
+        } else {
+            $this->setFlash('danger', 'Erreur inconnue, contactez l’administrateur.');
+        }
 
-		if ($rsp) {
-			$sms['sms']='<div class="alert alert-background fade show mt-1 message" role="alert">
-						     Content deleted successfully.
-						 </div>';
-		}else{
-            $sms['sms']='<div class="alert alert-background fade show mt-1 message" role="alert">
-						     <strong class="text-danger">Oups!</strong> An unknown error, contact admin!.
-						 </div>';
-		}
-		$this->session->set_flashdata($sms);
-		redirect(base_url('projects'));
-	}
+        redirect('projects');
+    }
 
+    /* ==============================
+     * DELETE PROJECT
+     * ============================== */
+    public function Deleteprojects()
+    {
+        $id = $this->input->post('id', TRUE);
 
+        $rsp = $this->Model->delete('projects', ['id' => $id]);
 
+        if ($rsp) {
+            $this->setFlash('success', 'Projet supprimé avec succès.');
+        } else {
+            $this->setFlash('danger', 'Erreur inconnue, contactez l’administrateur.');
+        }
 
+        redirect('projects');
+    }
 
+/* ==============================
+     * SEND NEWSLETTER
+     * ============================== */
+    private function sendNewsletter($project_id, $title, $description)
+    {
+        $emails = $this->Model->read('newsletter');
+        if (!$emails) return;
 
+        $smtp_email = $this->Model->get_setting('site_email', 'exemple@gmail.com');
+        $smtp_pass  = $this->Model->get_setting('password_email16caractere', 'xxxxxxxx');
 
-	  //upload images
-	public function upload_document($nom_file,$nom_champ)
-	{
-	      $ref_folder =FCPATH.'attachments/projects/';
-	      $code=date("YmdHis").uniqid();
-	      $fichier=basename($code);
-	      $file_extension = pathinfo($nom_champ, PATHINFO_EXTENSION);
-	      $file_extension = strtolower($file_extension);
-	      $valid_ext = array('gif','jpg','png','jpeg','JPG','PNG','JPEG');
+        $config = [
+            'protocol'    => 'smtp',
+            'smtp_host'   => 'smtp.gmail.com',
+            'smtp_port'   => 587,
+            'smtp_user'   => $smtp_email,
+            'smtp_pass'   => $smtp_pass,
+            'smtp_crypto' => 'tls',
+            'mailtype'    => 'html',
+            'charset'     => 'utf-8',
+            'newline'     => "\r\n"
+        ];
 
-	      if(!is_dir($ref_folder)) //create the folder if it does not already exists   
-	      {
-	          mkdir($ref_folder,0777,TRUE);                                        
-	      }  
-	      move_uploaded_file($nom_file, $ref_folder.$fichier.".".$file_extension);
-	      // $pathfile="attachments/shop_images/".$fichier.".".$file_extension;
-	      $image_name=$fichier.".".$file_extension;
-	      return $image_name;
-	}
+        $this->email->initialize($config);
+
+        foreach ($emails as $row) {
+            $this->email->clear(TRUE);
+            $this->email->from($smtp_email, 'URUMURI_ICSB');
+            $this->email->to($row['email']);
+            $this->email->subject($title);
+            $this->email->message($this->newsletterTemplate($project_id, $title, $description));
+            $this->email->send();
+        }
+    }
+
+    /* ==============================
+     * NEWSLETTER TEMPLATE
+     * ============================== */
+    private function newsletterTemplate($id, $title, $description)
+    {
+        return '
+        <h2>New Project Published</h2>
+        <p><strong>'.$title.'</strong></p>
+        <p>'.$description.'</p>
+        <a href="'.base_url('Home/detail_projects/'.$id).'">View Project</a>
+        ';
+    }
+
+    /* ==============================
+     * FLASH MESSAGE HELPER
+     * ============================== */
+    private function setFlash($type, $message)
+    {
+        $this->session->set_flashdata([
+            'sms' => '<div class="alert alert-'.$type.' mt-1 message">'.$message.'</div>'
+        ]);
+    }
+
+    /* ==============================
+     * UPLOAD IMAGE
+     * ============================== */
+    public function upload_document($tmp_name, $original_name)
+    {
+        $folder = FCPATH.'attachments/projects/';
+        if (!is_dir($folder)) {
+            mkdir($folder, 0777, TRUE);
+        }
+
+        $ext = strtolower(pathinfo($original_name, PATHINFO_EXTENSION));
+        $allowed = ['jpg','jpeg','png','gif'];
+
+        if (!in_array($ext, $allowed)) {
+            return null;
+        }
+
+        $filename = date('YmdHis').uniqid().'.'.$ext;
+        move_uploaded_file($tmp_name, $folder.$filename);
+
+        return $filename;
+    }
 }

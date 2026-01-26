@@ -160,7 +160,7 @@
                 <a href="<?=base_url('Home/AboutUs')?>" class="btn btn-teal btn-lg rounded-pill px-4 mt-3">En savoir plus <i class="fas fa-arrow-right ms-2"></i></a>
             </div>
             <div class="col-lg-6 text-center">
-                <img src="<?= base_url('assets/frontend/img/logo/urumuri.jpeg') ?>" class="img-fluid shadow-lg border border-5 border-white w-75">
+                <img src="<?= base_url('attachments/Other/' . $this->Model->get_setting('site_favicon', 'logo.png')) ?>" class="img-fluid shadow-lg border border-5 border-white w-75">
             </div>
         </div>
     </div>

@@ -39,7 +39,7 @@
 							  <a href="javascript:;">
 								<div class="app-box text-center">
 								  <div class="app-icon">
-									  <img src="<?=base_url()?>assets/backend/images/app/slack.png" width="30" alt="">
+									  <img src="<?= base_url('attachments/Other/' . $this->Model->get_setting('site_favicon', 'logo.png')) ?>" width="30" alt="">
 								  </div>
 								  <div class="app-name">
 									  <p class="mb-0 mt-1">Slack</p>

@@ -42,8 +42,8 @@
                     <li><a href="<?=base_url('')?>"><i class="fas fa-caret-right"></i> Home</a></li>
                     <li><a href="<?=base_url('Home/AboutUs')?>"><i class="fas fa-caret-right"></i> A propos</a></li>
                     <li><a href="<?=base_url('Home/Actions')?>"><i class="fas fa-caret-right"></i> Nos actions</a></li>
-                    <li><a href="<?=base_url('Home/Events')?>"><i class="fas fa-caret-right"></i> Evenements</a></li>
-                    <li><a href="<?=base_url('Home/Actualite')?>"><i class="fas fa-caret-right"></i> news</a></li>
+                    <li><a href="<?=base_url('Home/Objectifs')?>"><i class="fas fa-caret-right"></i>Objectifs</a></li>
+                    <li><a href="<?=base_url('Home/Faq')?>"><i class="fas fa-caret-right"></i> Faq</a></li>
                     <li><a href="<?=base_url('Home/Galleries')?>"><i class="fas fa-caret-right"></i> Galeries</a></li>
                     <li><a href="<?=base_url('Home/ContactUs')?>"><i class="fas fa-caret-right"></i> Contact us</a></li>
                     <li><a href="<?=base_url('Home/Involved')?>"><i class="fas fa-caret-right"></i> Donation</a></li>

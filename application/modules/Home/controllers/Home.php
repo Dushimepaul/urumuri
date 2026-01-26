@@ -74,7 +74,7 @@ class Home extends My_Controller
         
         $data['totalprojectrealise']=$this->Model->count('projects',['status'=>'ongoing']);
         $data['totalprojectencours']=$this->Model->count('projects',['status'=>'completed']);
-        $data['galleries'] = $this->Model->read('gallery', null, 'IdGallery','ASC', 3);
+        $data['galleries'] = $this->Model->read('gallery', null, 'IdGallery','ASC', 4);
 
         $data['projects']=$this->Model->read('projects',['status'=>'completed'],'id');
 
