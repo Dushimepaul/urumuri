@@ -67,7 +67,7 @@
 
 
 <div class="modal fade" id="update_<?=$value['id']?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-bs-backdrop="static">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="myLargeModalLabel">Update</h4>
@@ -92,7 +92,7 @@
                 
                 </div>
                 <div class="form-floating">
-                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" style="height: 100px;" required="" name="description"><?=$value['description']?></textarea>
+                    <textarea class="form-control ckeditor" placeholder="Leave a comment here" id="floatingTextarea" style="height: 100px;" required="" name="description"><?=$value['description']?></textarea>
                     <label for="floatingTextarea">Description</label>
                 </div>
             </div>
@@ -182,7 +182,7 @@
 </div>
 
 <div class="modal fade" id="projects" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-bs-backdrop="static">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="myLargeModalLabel">New projects</h4>
@@ -205,7 +205,7 @@
                 </div>
 
                 <div class="form-floating">
-                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" style="height: 100px;" required="" name="description"></textarea>
+                    <textarea class="form-control ckeditor" placeholder="Leave a comment here" id="floatingTextarea" style="height: 100px;" required="" name="description"></textarea>
                     <label for="floatingTextarea">Description</label>
                 </div>
             </div>
@@ -217,5 +217,20 @@
         </div>
     </div>
 </div>
+
+ 
+ <!-- ========= CKEDITOR + UPLOAD ========= -->
+<script src="https://cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
+
+<script>
+$(document).ready(function () {
+    $('.ckeditor').each(function () {
+        CKEDITOR.replace($(this).attr('name'), {
+            filebrowserUploadUrl: "<?php echo base_url('Carousel/uploadImage'); ?>",
+            filebrowserUploadMethod: "form"
+        });
+    });
+});
+</script>
 
 <?php include VIEWPATH.'includes/backend/Footer.php' ;?>

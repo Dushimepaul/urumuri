@@ -124,6 +124,16 @@
                             </div>
                             <?php } ?>
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>#</th>
+                                <th>Donateur</th>
+                                <th>Montant</th>
+                                <th>Méthode</th>
+                                <th>Type</th>
+                                <th>Action</th>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>

@@ -45,9 +45,9 @@
                         </thead>
 
                         <tbody>
-                        <?php foreach ($membres as $value) { ?>
+                        <?php $i=1; foreach ($membres as $value) { ?>
                             <tr>
-                                <td class="text-center">#<?=$value['ordre_affichage']?></td>
+                                <td class="text-center"><?= $i++ ?></td>
                                 <td class="text-center">
                                     <a href="javascript:void()" data-bs-toggle="modal" data-bs-target="#Image_<?=$value['id']?>">
                                         <?php if($value['image']): ?>

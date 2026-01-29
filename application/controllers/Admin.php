@@ -46,7 +46,7 @@ class Admin extends MY_Controller {
                 $user_role = !empty($role['name']) ? $role['name'] : 'Utilisateur';
                 
                 $session = array(
-                    'idUser' => $result['id'],
+                    'idUser' => $membres['id'],
                     'email' => $result['email'],
                     'user' => $user_name,
                     'photo' => $user_photo,

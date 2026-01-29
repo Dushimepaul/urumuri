@@ -14,6 +14,7 @@ class Dons extends MY_Controller {
     public function index() {
         $data['dons'] = $this->Model->read('dons', null, 'id','DESC');
         $data['methodes_paiement'] = $this->Model->read('mode_payement', null, 'id_mode_payement');
+        $data['pays'] = $this->Model->read('pays', null, 'pays','ASC');
         $this->load->view('Dons_View', $data);
     }
 

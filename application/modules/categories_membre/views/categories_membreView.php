@@ -33,7 +33,6 @@
 								<th>#</th>
 								<th>Nom</th>
 								<th>Description</th>
-								<th>Droit de vote</th>
 								<th>Actions</th>
 							</tr>
 						</thead>
@@ -44,14 +43,6 @@
 								<td><?= $i++; ?></td>
 								<td><?= $value['nom']; ?></td>
 								<td><?= $value['description']; ?></td>
-								<td class="text-center">
-	                                <a href="<?= base_url('categories_membre/Toggle_droit_vote/'.$value['id']); ?>"
-	                                 class="btn btn-sm <?= $value['droit_vote'] == 1 ? 'btn-success' : 'btn-danger'; ?>"
-	                               title="Changer le statut">
-	   
-	                                  <?= $value['droit_vote'] == 1 ? 'OUI' : 'NON'; ?>
-	                                </a>
-                               </td>
 
 								<td>
 									<div class="dropdown">
@@ -88,13 +79,6 @@
 													<label>Description</label>
 													<textarea class="form-control" name="description" rows="4" required><?= $value['description']; ?></textarea>
 												</div>
-                                                  <div class="mb-3">
-	                                                <label>Droit de vote</label>
-	                                                   <select name="droit_vote" class="form-control" required>
-		                                              <option value="1" <?= $value['droit_vote'] == 1 ? 'selected' : ''; ?>>Oui</option>
-		                                             <option value="0" <?= $value['droit_vote'] == 0 ? 'selected' : ''; ?>>Non</option>
-	                                               </select>
-                                                  </div>
 
 
 											</div>
@@ -177,15 +161,6 @@
 								<label>Description</label>
 								<textarea class="form-control" name="description" rows="4" required></textarea>
 							</div>
-<div class="mb-3">
-	<label>Droit de vote</label>
-	<select name="droit_vote" class="form-control" required>
-		<option value="1">Oui</option>
-		<option value="0">Non</option>
-	</select>
-</div>
-
-
 						</div>
 
 						<div class="modal-footer">

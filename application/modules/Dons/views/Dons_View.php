@@ -301,6 +301,16 @@
                             </div>
                             <?php } ?>
                         </tbody>
+                        <tfoot>
+                             <tr>
+                                <th>#</th>
+                                <th>Donateur</th>
+                                <th>Contact / Pays</th>
+                                <th>Statut</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -377,9 +387,14 @@
                     </div>
 
                     <div class="col-md-12">
-                        <label class="form-label">Pays *</label>
-                        <input type="text" class="form-control" name="pays" required>
-                    </div>
+                            <label class="form-label">Pays*</label>
+                            <select class="form-select" name="pays">
+                                <option value="">-- Sélectionner --</option>
+                                <?php foreach($pays as $pays): ?>
+                                <option value="<?= $pays['pays'] ?>"><?= htmlspecialchars($pays['pays']) ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>

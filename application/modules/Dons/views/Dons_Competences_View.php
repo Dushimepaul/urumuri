@@ -109,6 +109,15 @@
 
                             <?php } ?>
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>#</th>
+                                <th>Bénévole / Donateur</th>
+                                <th>Email</th>
+                                <th>Description de la contribution</th>
+                                <th>Action</th>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>

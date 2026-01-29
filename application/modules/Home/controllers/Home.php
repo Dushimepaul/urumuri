@@ -115,6 +115,7 @@ class Home extends My_Controller
 
     public function Involved(){
         $data['mode_payements'] = $this->Model->read('mode_payement', null, 'id_mode_payement');
+        $data['pays'] = $this->Model->read('pays', null, 'pays','ASC');
         $this->load->view('get_involved_View',$data);
     }
     

@@ -18,7 +18,7 @@ class Membres extends MY_Controller {
             SELECT m.*, cm.nom as nom
             FROM membres m
             LEFT JOIN categories_membre cm ON m.categories_membre_id = cm.id
-            ORDER BY m.ordre_affichage ASC, m.nom_complet ASC
+            ORDER BY m.ordre_affichage ASC
         ");
         
         $data['categories'] = $this->Model->read('categories_membre');

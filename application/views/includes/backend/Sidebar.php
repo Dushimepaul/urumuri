@@ -2,7 +2,7 @@
 				<div class="sidebar-wrapper" data-simplebar="true">
 					<div class="sidebar-header">
 						<div>
-							<img src="<?=base_url()?>assets/frontend/img/logo/urumuri.jpeg" class="logo-icon" alt="logo icon">
+							<img src="<?= base_url('attachments/Other/' . $this->Model->get_setting('site_logo','logo.png')) ?>" class="logo-icon" alt="logo icon">
 						</div>
 						<div>
 							<h4 class="logo-text">URUMURI_ICSB</h4>
@@ -84,7 +84,7 @@
 					
 						
 						<li>
-							<a class="has-arrow" href="<?=base_url('Membres')?>">
+							<a class="has-arrow" href="#">
 								<div class="parent-icon"><i class="bx bx-repeat"></i>
 								</div>
 								<div class="menu-title">membres</div>
@@ -92,7 +92,7 @@
 							<ul>
 								<li> <a href="<?=base_url('Categories_membre')?>"><i class='bx bx-radio-circle'></i>Categories Members</a>
 								</li>
-								<li> <a href="javascript:;"><i class='bx bx-radio-circle'></i>Membres</a>
+								<li> <a href="<?=base_url('Membres')?>"><i class='bx bx-radio-circle'></i>Membres</a>
 								</li>
 							</ul>
 						</li>

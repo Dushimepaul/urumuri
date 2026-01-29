@@ -108,6 +108,15 @@
                             </div>
                             <?php } ?>
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>#</th>
+                                <th>Donateur</th>
+                                <th>Téléphone</th>
+                                <th>Description du Matériel</th>
+                                <th>Action</th>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
