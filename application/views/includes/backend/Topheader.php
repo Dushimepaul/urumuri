@@ -1,52 +1,142 @@
 <!--start header -->
 <header>
-    <div class="topbar">
-        <nav class="navbar navbar-expand gap-2 align-items-center">
-            <div class="mobile-toggle-menu d-flex"><i class='bx bx-menu'></i></div>
+<div class="topbar">
+    <nav class="navbar navbar-expand gap-2 align-items-center">
+        <div class="mobile-toggle-menu d-flex"><i class='bx bx-menu'></i>
+        </div>
 
-            <div class="top-menu ms-auto">
-                <ul class="navbar-nav align-items-center gap-1">
-                    <li class="nav-item dropdown dropdown-laungauge d-none d-sm-flex">
-                        <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="javascript:;" data-bs-toggle="dropdown">
-                            <img src="<?= base_url() ?>assets/backend/images/county/02.png" width="22" alt="">
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item d-flex align-items-center py-2" href="javascript:;"><img src="<?= base_url() ?>assets/backend/images/county/01.png" width="20" alt=""><span class="ms-2">English</span></a></li>
-                            <li><a class="dropdown-item d-flex align-items-center py-2" href="javascript:;"><img src="<?= base_url() ?>assets/backend/images/county/03.png" width="20" alt=""><span class="ms-2">French</span></a></li>
-                        </ul>
-                    </li>
+<!--          <div class="search-bar d-lg-block d-none" data-bs-toggle="modal" data-bs-target="#SearchModal">
+             <a href="avascript:;" class="btn d-flex align-items-center"><i class="bx bx-search"></i>Search</a>
+          </div> -->
 
-                    <li class="nav-item dark-mode d-none d-sm-flex">
-                        <a class="nav-link dark-mode-icon" href="javascript:;" id="darkModeToggle"><i class='bx bx-moon'></i></a>
-                    </li>
-                    
-                    <li class="nav-item dropdown dropdown-app">
-                        <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown" href="javascript:;"><i class='bx bx-grid-alt'></i></a>
-                        <div class="dropdown-menu dropdown-menu-end p-0">
-                            <div class="app-container p-2 my-2">
-                                <div class="row gx-0 gy-2 row-cols-3 justify-content-center p-2">
-                                    <div class="col text-center">
-                                        <a href="<?= base_url() ?>" target="_blank" class="text-decoration-none">
-                                            <div class="app-box">
-                                                <?php 
-                                                $favicon = $this->Model->get_setting('site_favicon', 'logo.png');
-                                                $favicon_path = 'attachments/Other/' . $favicon;
-                                                ?>
-                                                <?php if (!empty($favicon) && file_exists(FCPATH . $favicon_path)): ?>
-                                                    <img src="<?= base_url($favicon_path) ?>" width="30" alt="Site">
-                                                <?php else: ?>
-                                                    <i class='bx bx-globe fs-4'></i>
-                                                <?php endif; ?>
-                                                <p class="mb-0 mt-1">Site</p>
-                                            </div>
-                                        </a>
+          <div class="top-menu ms-auto">
+            <ul class="navbar-nav align-items-center gap-1">
+                <li class="nav-item mobile-search-icon d-flex d-lg-none" data-bs-toggle="modal" data-bs-target="#SearchModal">
+                    <a class="nav-link" href="avascript:;"><i class='bx bx-search'></i>
+                    </a>
+                </li>
+                <li class="nav-item dropdown dropdown-laungauge d-none d-sm-flex">
+                    <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="avascript:;" data-bs-toggle="dropdown"><img src="<?=base_url()?>assets/backend/images/county/02.png" width="22" alt="">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item d-flex align-items-center py-2" href="javascript:;"><img src="<?=base_url()?>assets/backend/images/county/01.png" width="20" alt=""><span class="ms-2">English</span></a>
+                        </li>
+                        <li><a class="dropdown-item d-flex align-items-center py-2" href="javascript:;"><img src="<?=base_url()?>assets/backend/images/county/03.png" width="20" alt=""><span class="ms-2">French</span></a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dark-mode d-none d-sm-flex">
+                    <a class="nav-link dark-mode-icon" href="javascript:;"><i class='bx bx-moon'></i>
+                    </a>
+                </li>
+
+                <li class="nav-item dropdown dropdown-app">
+                    <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown" href="javascript:;"><i class='bx bx-grid-alt'></i></a>
+                    <div class="dropdown-menu dropdown-menu-end p-0">
+                        <div class="app-container p-2 my-2">
+                          <div class="row gx-0 gy-2 row-cols-3 justify-content-center p-2">
+
+                             <div class="col">
+                                 <a href="<?= base_url() ?>" target="_blank" class="text-decoration-none" title="Ouvrir Stack Overflow">
+                                    <div class="app-box text-center p-3 rounded-3 hover-scale">
+                                      <div class="app-icon mb-2">
+                                         <img src="<?= base_url() ?>assets/backend/images/app/stack-overflow.png" 
+                                     width="36" 
+                                     height="36" 
+                                     alt="Stack Overflow Logo"
+                                     class="rounded-circle"
+                                     onerror="this.src='<?= base_url() ?>assets/backend/images/app/default-app.png'">
                                     </div>
+                                     <div class="app-name">
+                                    <p class="mb-0 text-dark fw-medium small">Home</p>
+                                  </div>
                                 </div>
-                            </div>
+                             </a>
+                          </div>
+
+                          <div class="col">
+                                 <a href="<?= base_url('Home/Actions') ?>" target="_blank" class="text-decoration-none" title="Ouvrir Stack Overflow">
+                                    <div class="app-box text-center p-3 rounded-3 hover-scale">
+                                      <div class="app-icon mb-2">
+                                         <img src="<?= base_url() ?>assets/backend/images/app/stack-overflow.png" 
+                                     width="36" 
+                                     height="36" 
+                                     alt="Stack Overflow Logo"
+                                     class="rounded-circle"
+                                     onerror="this.src='<?= base_url() ?>assets/backend/images/app/default-app.png'">
+                                    </div>
+                                     <div class="app-name">
+                                    <p class="mb-0 text-dark fw-medium small">Projects</p>
+                                  </div>
+                                </div>
+                             </a>
+                          </div>
+                          <div class="col">
+                                 <a href="<?=base_url('Home/Team')?>" target="_blank" class="text-decoration-none" title="Ouvrir Stack Overflow">
+                                    <div class="app-box text-center p-3 rounded-3 hover-scale">
+                                      <div class="app-icon mb-2">
+                                         <img src="<?= base_url() ?>assets/backend/images/app/stack-overflow.png" 
+                                     width="36" 
+                                     height="36" 
+                                     alt="Stack Overflow Logo"
+                                     class="rounded-circle"
+                                     onerror="this.src='<?= base_url() ?>assets/backend/images/app/default-app.png'">
+                                    </div>
+                                     <div class="app-name">
+                                    <p class="mb-0 text-dark fw-medium small">Team</p>
+                                  </div>
+                                </div>
+                             </a>
+                          </div>
+                          <div class="col">
+                                 <a href="<?= base_url('Home/Galleries') ?>" target="_blank" class="text-decoration-none" title="Ouvrir Stack Overflow">
+                                    <div class="app-box text-center p-3 rounded-3 hover-scale">
+                                      <div class="app-icon mb-2">
+                                         <img src="<?= base_url() ?>assets/backend/images/app/stack-overflow.png" 
+                                     width="36" 
+                                     height="36" 
+                                     alt="Stack Overflow Logo"
+                                     class="rounded-circle"
+                                     onerror="this.src='<?= base_url() ?>assets/backend/images/app/default-app.png'">
+                                    </div>
+                                     <div class="app-name">
+                                    <p class="mb-0 text-dark fw-medium small">Galleries</p>
+                                  </div>
+                                </div>
+                             </a>
+                          </div>
+    
+                          </div><!--end row-->
+    
                         </div>
-                    </li>
-                </ul>
-            </div>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown dropdown-large">
+                    <div class="dropdown-menu dropdown-menu-end">
+
+                        <div class="header-notifications-list">
+                        
+                        </div>
+
+                    </div>
+                </li>
+                <li class="nav-item dropdown dropdown-large">
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <div class="header-message-list">
+                            
+                            
+                        </div>
+                    </div>
+                </li>
+
+
+            </ul>
+        </div>
+
+
+
+
 
             <?php
             // Récupération des données de session
@@ -55,7 +145,9 @@
             $user_role = $this->session->userdata('role');
             $user_photo = $this->session->userdata('photo');
             $user_email = $this->session->userdata('email');
-            
+
+            $message_non_lus = $this->Model->count('contact_us', ['is_readed' => 0]);
+
             // Initiales pour l'avatar
             $initials = 'UR';
             if (!empty($user_name)) {
@@ -149,11 +241,13 @@
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="<?= base_url('admin/notifications') ?>">
+                        <a class="dropdown-item d-flex align-items-center" href="<?= base_url('Contact_Us') ?>">
                             <i class="bx bx-bell fs-5 me-2"></i>
                             <span>Notifications</span>
-                            <?php if (!empty($membre_info['notification_count'])): ?>
-                                <span class="badge bg-primary ms-auto"><?= $membre_info['notification_count'] ?></span>
+                            <?php if (!empty($message_non_lus) && $message_non_lus > 0): ?>
+                                <span class="badge bg-primary ms-auto">
+                                    <?= (int) $message_non_lus ?>
+                                </span>
                             <?php endif; ?>
                         </a>
                     </li>
@@ -354,17 +448,20 @@
 </style>
 
 <script>
-// Toggle mode sombre
+// Toggle mode sombre - VERSION CORRIGÉE
 const darkModeToggle = document.getElementById('darkModeToggle');
 if (darkModeToggle) {
     darkModeToggle.addEventListener('click', function() {
         document.body.classList.toggle('dark-mode');
         const icon = this.querySelector('i');
+        
         if (document.body.classList.contains('dark-mode')) {
+            // Mode sombre activé - icône devient soleil
             icon.classList.remove('bx-moon');
             icon.classList.add('bx-sun');
             localStorage.setItem('darkMode', 'enabled');
         } else {
+            // Mode clair activé - icône devient lune
             icon.classList.remove('bx-sun');
             icon.classList.add('bx-moon');
             localStorage.setItem('darkMode', 'disabled');
@@ -379,6 +476,15 @@ if (darkModeToggle) {
             icon.classList.remove('bx-moon');
             icon.classList.add('bx-sun');
         }
+    } else {
+        // Light mode par défaut - s'assurer que l'icône est lune
+        const icon = document.querySelector('#darkModeToggle i');
+        if (icon) {
+            icon.classList.remove('bx-sun');
+            icon.classList.add('bx-moon');
+        }
+        // S'assurer que localStorage est défini
+        localStorage.setItem('darkMode', 'disabled');
     }
 }
 
@@ -397,11 +503,29 @@ document.addEventListener('click', function(e) {
     if (!e.target.closest('.user-box')) {
         const userDropdown = document.querySelector('.user-box .dropdown-menu');
         if (userDropdown && userDropdown.classList.contains('show')) {
-            const dropdownInstance = bootstrap.Dropdown.getInstance(document.querySelector('.user-box .dropdown-toggle'));
-            if (dropdownInstance) {
-                dropdownInstance.hide();
+            const dropdownToggle = document.querySelector('.user-box .dropdown-toggle');
+            if (dropdownToggle) {
+                const dropdownInstance = bootstrap.Dropdown.getInstance(dropdownToggle);
+                if (dropdownInstance) {
+                    dropdownInstance.hide();
+                }
             }
         }
     }
 });
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
